@@ -1,8 +1,6 @@
 export default function Home() {
   return (
-    <>
-      <div className="">
-        <div className="!visible min-w-full border rounded lg:grid lg:grid-cols-3">
+        <div className="border rounded lg:grid lg:grid-cols-3 max-h-full">
           <div className="border-r border-gray-300 lg:col-span-1">
             <div className="mx-3 my-3">
               <div className="relative text-gray-600">
@@ -109,9 +107,5 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-
-
-    </>
   )
 }
