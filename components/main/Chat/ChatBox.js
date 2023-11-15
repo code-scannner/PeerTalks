@@ -71,59 +71,11 @@ const messages = [
         is_sender: true,
         message: "See ya, Alice! Take care."
     }
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: false,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: false,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: false,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: false,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
-    {
-        is_sender: true,
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempor magna vitae fermentum ultricies. Aliquam nec tellus id nisl imperdiet auctor quis in magna."
-    },
 ]
 
 export default function ChatBox() {
     return (
         <div
-            className="relative text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] bg-primary-50">
-            <div className="absolute inset-0 opacity-10 h-full"
-                style={{
-                    background: `url("image/chatbg.jpg")`,
-                    backgroundSize: "50%"
-                }}
-            />
-
             className="relative text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] bg-primary-50">
             <div className="absolute inset-0 opacity-10 h-full"
                 style={{
