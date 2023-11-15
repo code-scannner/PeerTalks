@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow:{
+        chat:"rgba(0, 0, 0, 0.15) 1.5px 1.5px 2px",
+      },
       colors: {
         primary: {
           '25': 'hsl(278, 100%, 99%)',
