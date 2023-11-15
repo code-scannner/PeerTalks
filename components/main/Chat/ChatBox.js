@@ -23,7 +23,16 @@ const messages = [
 
 export default function ChatBox() {
     return (
-        <div className="relative text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh]" style={{backgroundImage:"/image/chatbg.jpg"}}>
+        <div
+        style={{
+            background:`url("image/chatbg.jpg")`,
+            backgroundSize:"60% 60%",
+            // backgroundPosition:"contain",
+            // backgroundBlendMode:"color-dodge"
+            
+        }}
+        className="relative text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] bg-primary-100">
+            
             <ul className="flex flex-col">
                 {messages.map((elem, key,arr) => {
                     return (
