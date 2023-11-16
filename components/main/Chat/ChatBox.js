@@ -77,7 +77,7 @@ export default function ChatBox() {
     return (
         <div
             className="relative text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] bg-primary-50">
-            <div className="absolute inset-0 opacity-10 h-full"
+            <div className="absolute inset-0 opacity-20 h-full"
                 style={{
                     background: `url("image/chatbg.jpg")`,
                     backgroundSize: "50%"
