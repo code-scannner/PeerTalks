@@ -35,7 +35,7 @@ const links = [
 
 export default function NavBar() {
     const pathname = usePathname();
-    return <nav className="border-r border-gray-200 bg-white fixed top-0 w-16 left-0 flex flex-col justify-between h-full py-4">
+    return <nav className={`${pathname !== "/" ? "" : "hidden"} border-r border-gray-200 bg-white fixed top-0 w-16 left-0 flex flex-col justify-between h-full py-4`}>
 
         <Link href={"/"} className={`p-2 text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200 rounded-full focus:outline-none mx-auto w-fit`}>
             <span className="sr-only">Peer Talks</span>
