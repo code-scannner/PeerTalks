@@ -1,4 +1,5 @@
 # Peer Talks
+## Where minds meet, ideas greet, and conversations take the lead.
 
 Peer Talks is a real-time chatting application designed for peer-to-peer communication. It provides a seamless and interactive platform for users to engage in conversations in real time.
 
