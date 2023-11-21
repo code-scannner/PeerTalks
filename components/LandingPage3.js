@@ -28,7 +28,6 @@ export default function LandingPage3() {
           <span className="text-primary-700 font-bold">PEER TALKS</span> ?
         </div>
         <div className="flex flex-row">
-          {/* Use parentheses to implicitly return the FeatureCard component */}
           {features.map((feature, index) => (
             <FeatureCard key={index} heading={feature.heading} desc={feature.description} />
           ))}
