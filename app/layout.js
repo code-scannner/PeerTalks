@@ -17,7 +17,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className='relative selection:bg-primary-400 selection:text-white' style={{ fontFamily: "Poppins, sans-serif" }} >
         <NavBar />
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   )
