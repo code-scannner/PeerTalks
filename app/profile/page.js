@@ -1,4 +1,4 @@
-export default function Home() {
+/*export default function Home() {
     return <>
         <div className="w-full bg-gradient-to-b from-primary-100 to-slate-100 h-72 
             flex justify-center items-center pb-5">
@@ -13,7 +13,117 @@ export default function Home() {
             </div>
         </div>
         <div className="mx-auto px-8 py-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 min-h-screen -translate-y-12" >
-            <div className="text-gray-600 text-sm">Basic Info</div>
+            <div className="text-gray-600 text-base">Basic Info</div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Bio  <textarea name="my text" cols="90" rows="1"></textarea></div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Email <input type="email" name="myEmail" style={{ marginRight: '10px' }} /></div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Phone <input type="tel" name="myPhone" style={{ marginRight: '10px' }} /></div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Gender <input type="text" name="myGender" style={{ marginRight: '10px' }} /></div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Country <input type="text" name="myCountry" style={{ marginRight: '10px' }} /></div>
+            <div className="text-gray-600 text-sm" style={{ marginTop: '10px' }}>Language <input type="text" name="myLanguage" style={{ marginRight: '10px' }} /></div>
         </div>
     </>
-}
+}*/
+export default function Home() {
+    return (
+      <>
+        {/* Header Section */}
+        <div className="w-full bg-gradient-to-b from-primary-100 to-slate-100 h-72 flex justify-center items-center pb-5">
+          <div className="flex items-center w-6/12">
+            <img
+              className="object-cover w-28 h-28 rounded-xl ring-4 ring-white shadow-lg"
+              src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
+              alt="profile"
+            />
+            <div className="ml-8 space-y-1">
+              <h1 className="text-xl font-semibold">UserName</h1>
+              <h2 className="text-sm text-gray-600">More Description</h2>
+            </div>
+          </div>
+        </div>
+  
+        {/* Main Content Section */}
+        <div className="mx-auto px-8 py-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 min-h-screen -translate-y-12">
+          <div className="text-gray-600 text-lg font-semibold mb-4">Basic Info</div>
+  
+          {/* Bio */}
+          <div className="mb-4">
+            <label htmlFor="bio" className="text-gray-600 text-sm block mb-1">
+              Bio
+            </label>
+            <textarea
+              id="bio"
+              name="bio"
+              className="w-full border rounded-md py-2 px-3"
+              rows="2"
+            ></textarea>
+          </div>
+  
+          {/* Email */}
+          <div className="mb-4">
+            <label htmlFor="myEmail" className="text-gray-600 text-sm block mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              id="myEmail"
+              name="myEmail"
+              className="w-full border rounded-md py-2 px-3"
+            />
+          </div>
+  
+          {/* Phone */}
+          <div className="mb-4">
+            <label htmlFor="myPhone" className="text-gray-600 text-sm block mb-1">
+              Phone
+            </label>
+            <input
+              type="tel"
+              id="myPhone"
+              name="myPhone"
+              className="w-full border rounded-md py-2 px-3"
+            />
+          </div>
+  
+          {/* Gender */}
+          <div className="mb-4">
+            <label htmlFor="myGender" className="text-gray-600 text-sm block mb-1">
+              Gender
+            </label>
+            <input
+              type="text"
+              id="myGender"
+              name="myGender"
+              className="w-full border rounded-md py-2 px-3"
+            />
+          </div>
+  
+          {/* Country */}
+          <div className="mb-4">
+            <label htmlFor="myCountry" className="text-gray-600 text-sm block mb-1">
+              Country
+            </label>
+            <input
+              type="text"
+              id="myCountry"
+              name="myCountry"
+              className="w-full border rounded-md py-2 px-3"
+            />
+          </div>
+  
+          {/* Language */}
+          <div className="mb-4">
+            <label htmlFor="myLanguage" className="text-gray-600 text-sm block mb-1">
+              Language
+            </label>
+            <input
+              type="text"
+              id="myLanguage"
+              name="myLanguage"
+              className="w-full border rounded-md py-2 px-3"
+            />
+          </div>
+        </div>
+      </>
+    );
+  }
+  
