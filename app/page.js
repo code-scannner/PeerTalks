@@ -1,12 +1,12 @@
-import LandingPage from "@/components/LandingPage";
-import LandingPage2 from "@/components/LandingPage2";
-import LandingPage3 from "@/components/LandingPage3";
+import Desc from "@/components/LandingPage/Desc";
+import Features from "@/components/LandingPage/Features";
+import Intro from "@/components/LandingPage/Intro";
 export default function Home() {
   return (
     <>
-      <LandingPage/>
-      <LandingPage2/>
-      <LandingPage3/>
+    <Intro/>
+    <Desc/>
+    <Features/>
     </>
   );
 }

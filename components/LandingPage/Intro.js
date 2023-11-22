@@ -1,7 +1,7 @@
 import Image from "next/image";
 import intro from "public/image/homebg.png";
 import logo from "public/image/logo.png";
-export default function LandingPage() {
+export default function Intro() {
   return (
     <>
       <div className="h-screen w-full relative overflow-hidden">

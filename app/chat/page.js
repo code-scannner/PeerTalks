@@ -23,6 +23,30 @@ const chatProfiles = [
         lastMsgTime: "6 hr",
         image: "https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
     },
+    {
+        name: "Tanishq",
+        lastMsg: "Good Morning",
+        lastMsgTime: "6 hr",
+        image: "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
+    },
+    {
+        name: "Vansh",
+        lastMsg: "Good Morning",
+        lastMsgTime: "6 hr",
+        image: "https://cdn.pixabay.com/photo/2016/06/15/15/25/loudspeaker-1459128__340.png"
+    },
+    {
+        name: "Wajid",
+        lastMsg: "Good Morning",
+        lastMsgTime: "6 hr",
+        image: "https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
+    },
+    {
+        name: "Kalp",
+        lastMsg: "Good Morning",
+        lastMsgTime: "6 hr",
+        image: "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
+    },
 ]
 
 
