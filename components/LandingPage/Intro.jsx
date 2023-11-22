@@ -5,7 +5,7 @@ export default function Intro() {
   return (
     <>
       <div className="h-screen w-full relative overflow-hidden">
-      <div className="bg-gradient-to-b from-primary-50 to-primary-100 h-full w-full scale-[5] -translate-y-[90rem] flex rounded-b-full inset-0 absolute -z-10" />
+      <div className="bg-gradient-to-b from-primary-50 to-primary-100 h-full w-full scale-[4] -translate-y-[70rem] flex rounded-b-full inset-0 absolute -z-10" />
         <div className="h-full w-full flex">
           <div className="mt-32 ml-32 font-bold text-6xl text-primary-700 w-1/2">
             <Image className="w-96" src = {logo} alt= "Peer Talks"/>
