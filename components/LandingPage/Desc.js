@@ -1,6 +1,6 @@
 import Image from "next/image";
 import nextImage from "public/image/second.jpg";
-export default function LandingPage2(){
+export default function Desc(){
     return (
         <>
         <div className="my-20 flex flex-row">
