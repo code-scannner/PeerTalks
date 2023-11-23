@@ -2,56 +2,20 @@
 import ChatBox from "@/components/main/Chat/ChatBox";
 import ChatList from "@/components/main/Chat/ChatList";
 import MessageBox from "@/components/main/Chat/MessageBox";
-import { useState } from "react";
-
-const chatProfiles = [
-    {
-        name: "Shreyansh",
-        lastMsg: "bye",
-        lastMsgTime: "25 min",
-        image: "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
-    },
-    {
-        name: "Shivam",
-        lastMsg: "Good night",
-        lastMsgTime: "50 min",
-        image: "https://cdn.pixabay.com/photo/2016/06/15/15/25/loudspeaker-1459128__340.png"
-    },
-    {
-        name: "Utkarsh",
-        lastMsg: "Good Morning",
-        lastMsgTime: "6 hr",
-        image: "https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
-    },
-    {
-        name: "Tanishq",
-        lastMsg: "Good Morning",
-        lastMsgTime: "6 hr",
-        image: "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
-    },
-    {
-        name: "Vansh",
-        lastMsg: "Good Morning",
-        lastMsgTime: "6 hr",
-        image: "https://cdn.pixabay.com/photo/2016/06/15/15/25/loudspeaker-1459128__340.png"
-    },
-    {
-        name: "Wajid",
-        lastMsg: "Good Morning",
-        lastMsgTime: "6 hr",
-        image: "https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
-    },
-    {
-        name: "Kalp",
-        lastMsg: "Good Morning",
-        lastMsgTime: "6 hr",
-        image: "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
-    },
-]
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const [profile, setProfile] = useState(0);
+    const [chatProfiles, setChatProfiles] = useState([]);
+    useEffect(() => {
+        axios.get(`chat/api`).then(function (response) {
+            console.log(response.data.users)
+            setChatProfiles(response.data.users)
+          }).catch(function (error) {
+            console.log(error);
+          })
+      },[]);
     return <>
         <div className="border rounded lg:grid lg:grid-cols-4 max-h-full">
             <div className="border-r border-gray-300 lg:col-span-1">
@@ -69,16 +33,16 @@ export default function Home() {
                 <ChatList profiles={chatProfiles} profile={profile} setProfile={setProfile} />
             </div>
             <div className="hidden lg:col-span-3 lg:block">
-                <div className="w-full">
+                {chatProfiles.length > 0 && <div className="w-full">
                     <div className="relative flex items-center p-3 border-b border-gray-300">
-                        <img className="object-cover w-10 h-10 rounded-full" src={chatProfiles[profile].image} alt={chatProfiles[profile].name} />
-                        <span className="block ml-2 font-bold text-gray-600">{chatProfiles[profile].name}</span>
+                        <img className="object-cover w-10 h-10 rounded-full" src={chatProfiles[profile].pic} alt={chatProfiles[profile].fname} />
+                        <span className="block ml-2 font-bold text-gray-600">{chatProfiles[profile].fname}</span>
                         <span className="absolute w-3 h-3 bg-green-400 rounded-full left-10 top-3">
                         </span>
                     </div>
                     <ChatBox />
                     <MessageBox />
-                </div>
+                </div>}
             </div>
         </div>
     </>
