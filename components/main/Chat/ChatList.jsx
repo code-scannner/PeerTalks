@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function ChatList({profiles, setProfile, profile}) {
     return <>
         <ul className="overflow-auto">
-            {profiles.map((elem, key) => {
+            {profiles.length > 0 && profiles.map((elem, key) => {
                 let active = key == profile;
                 return <li key={key}>
                     <Link href="/chat" onClick={()=>setProfile(key)} className={`flex items-center px-3 py-2 text-sm transition duration-300 ease-in-out border-b border-gray-300 cursor-pointer ${active ? "bg-gray-100" : ""} hover:bg-gray-100 focus:outline-none`}>
