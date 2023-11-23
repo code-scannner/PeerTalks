@@ -51,7 +51,7 @@ export default function Home() {
               Phone
             </label>
             <input
-              type="number"
+              type="Phone"
               id="myPhone"
               name="myPhone"
               className="w-full border rounded-md py-2 px-3"
