@@ -1,9 +1,33 @@
+"use client"
+
+import axios from "axios";
+
 export default function Register(){
+
+  const submit = (event) => {
+    event.preventDefault(); // Prevents the default form submission behavior
+    const formData = new FormData(event.target);
+    const formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
+    
+    if(formObject.password != formObject.cpassword) return;
+
+    axios.post('register/api', formObject).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    })
+
+
+  }
+
     return <>
     <div className="flex items-center justify-center h-screen">
       <div className="bg-white p-8 rounded shadow-md sm:w-full md:w-96 lg:w-1/3">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={submit}>
           <div className="flex space-x-4">
             <div className="w-1/2">
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -12,7 +36,7 @@ export default function Register(){
               <input
                 type="text"
                 id="firstName"
-                name="firstName"
+                name="fname"
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               />
@@ -25,34 +49,7 @@ export default function Register(){
               <input
                 type="text"
                 id="lastName"
-                name="lastName"
-                className="mt-1 p-2 w-full border rounded-md"
-                required
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="mt-1 p-2 w-full border rounded-md"
-                required
-              />
-            </div>
-
-            <div className="w-1/2">
-              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                Phone Number:
-              </label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
+                name="lname"
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               />
@@ -111,7 +108,7 @@ export default function Register(){
               <input
                 type="password"
                 id="confirmPassword"
-                name="confirmPassword"
+                name="cpassword"
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               />

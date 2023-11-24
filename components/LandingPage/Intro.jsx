@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import intro from "public/image/homebg.png";
 import logo from "public/image/logo.png";
 export default function Intro() {
@@ -22,10 +23,14 @@ export default function Intro() {
             </p>
             <div className="my-10 flex gap-x-5 ml-12">
               <button className="text-primary-500 uppercase tracking-wider border-2 border-solid border-primary-600 hover:bg-primary-600 hover:text-white transition-colors duration-200 font-medium text-lg py-2 px-6 rounded-md">
+                <Link href="/login">
                 Login
+                </Link>
               </button>
               <button className="text-primary-500 uppercase tracking-wider border-2 border-solid border-primary-600 hover:bg-primary-600 hover:text-white transition-colors duration-200 font-medium text-lg py-1 px-4 rounded-md">
+                <Link href="/register">
                 Sign Up
+                </Link>
               </button>
             </div>
           </div>
