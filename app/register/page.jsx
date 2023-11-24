@@ -30,8 +30,8 @@ export default function Register() {
     <>
       <div className="from-primary-50 to-primary-300 bg-gradient-to-br flex items-center justify-center h-screen">
         <div className="flex shadow-md sm:w-full md:w-96 lg:w-7/12 rounded-lg min-h-[70vh]">
-          <div className="bg-gradient-to-br from-primary-500/20 to-primary-700/20 w-4/12 rounded-l-lg flex flex-col justify-center items-center">
-            <div className="bg-primary-500 w-full pl-5 h-32 flex flex-col justify-center">
+          <div className="bg-gradient-to-b from-primary-700/80  to-primary-300/80 w-4/12 rounded-l-lg flex flex-col justify-center items-center">
+            <div className=" w-full h-32 flex flex-col justify-center items-center">
               <h3 className=" text-white text-xl">Welcome to</h3>
               <h2 className="text-white text-4xl font-bold">PEER TALKS</h2>
             </div>
@@ -86,7 +86,7 @@ export default function Register() {
               </button>
 
               <div className="mx-auto text-sm text-gray-900">
-                Already have an account ? <Link href="/login" className="font-semibold text-gray-950 hover:text-black">Sign in</Link>
+                Already have an account ? <Link href="/login" className="font-semibold text-gray-950 hover:text-black">Log In</Link>
               </div>
             </form>
           </div>
