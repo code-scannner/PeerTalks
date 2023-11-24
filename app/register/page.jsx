@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Link from "next/link";
 
 export default function Register() {
   const submit = (event) => {
@@ -23,130 +24,70 @@ export default function Register() {
       });
   };
 
+  let inputClass = "bg-white mt-1 p-2 w-full border border-gray-200 rounded-md focus:outline-none text-[0.95rem] focus:border-gray-400 transition-colors py-3 px-4";
+
   return (
     <>
-      <div className="bg-primary-100 flex items-center justify-center h-screen">
-        <div className="flex shadow-md sm:w-full md:w-96 lg:w-1/2 rounded-lg">
-          <div className=" bg-gradient-to-b from-primary-600 to-primary-300 w-1/3 bg-primary-600 rounded-l-lg flex flex-col justify-center items-center">
-            <h3 className=" text-white text-lg">Welcome to</h3>
-            <h2 className="text-white text-3xl font-bold">PEER TALKS</h2>
+      <div className="from-primary-50 to-primary-300 bg-gradient-to-br flex items-center justify-center h-screen">
+        <div className="flex shadow-md sm:w-full md:w-96 lg:w-7/12 rounded-lg min-h-[70vh]">
+          <div className="bg-gradient-to-br from-primary-500/20 to-primary-700/20 w-4/12 rounded-l-lg flex flex-col justify-center items-center">
+            <div className="bg-primary-500 w-full pl-5 h-32 flex flex-col justify-center">
+              <h3 className=" text-white text-xl">Welcome to</h3>
+              <h2 className="text-white text-4xl font-bold">PEER TALKS</h2>
+            </div>
           </div>
-          <div className="bg-white p-8 rounded-r-lg w-2/3">
-            <h2 className="text-2xl font-bold mb-4 pr-2 text-gray-700 text-center">
-              Sign Up
-            </h2>
-            <form className="space-y-4" onSubmit={submit}>
-              <div className="flex space-x-4">
+          <div className="bg-gray-50 p-8 rounded-r-lg w-2/3">
+            <div className="ml-2 flex flex-col gap-y-1">
+              <h2 className="text-2xl font-bold pr-2 text-gray-700">Sign Up</h2>
+              <h3 className="text-gray-500 text-sm mb-6">Create an account to start chatting with Peers</h3>
+            </div>
+            <form className="flex flex-col gap-y-3" onSubmit={submit}>
+
+              <div className="flex gap-x-4">
                 <div className="w-1/2">
-                  <label
-                    htmlFor="firstName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="fname"
-                    className="mt-1 p-2 w-full border rounded-md "
-                    required
-                    placeholder="First Name"
-                  />
+                  <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" />
                 </div>
 
                 <div className="w-1/2">
-                  <label
-                    htmlFor="lastName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lname"
-                    className="mt-1 p-2 w-full border rounded-md"
-                    required
-                    placeholder="Last Name"
-                  />
-                </div>
-              </div>
-              <div className="flex space-x-4">
-                <div className="w-1/2">
-                  <label
-                    htmlFor="username"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    className="mt-1 p-2 w-full border rounded-md"
-                    required
-                    placeholder="Username"
-                  />
-                </div>
-
-                <div className="w-1/2">
-                  <label
-                    htmlFor="gender"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="mt-1 p-2 w-full border rounded-md"
-                    required
-                    
-                  >
-                    <option value="Other" disable hidden>Gender</option>
+                  <select id="gender" name="gender" className={inputClass} required >
+                    <option value="Other" disable hidden>
+                      Gender
+                    </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
-              {/* Add similar markup for other fields */}
-              <div className="flex space-x-4">
+              <div className="flex gap-x-4">
                 <div className="w-1/2">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="mt-1 p-2 w-full border rounded-md"
-                    required
-                    placeholder="Password"
-                  />
+                  <input type="text" id="firstName" name="fname" className={inputClass} required placeholder="First Name" />
                 </div>
 
                 <div className="w-1/2">
-                  <label
-                    htmlFor="confirmPassword"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                  </label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="cpassword"
-                    className="mt-1 p-2 w-full border rounded-md"
-                    required
-                    placeholder="Confirm Password"
-                  />
+                  <input type="text" id="lastName" name="lname" className={inputClass} required placeholder="Last Name" />
+                </div>
+              </div>
+              <div className="flex gap-x-4">
+                <div className="w-1/2">
+                  <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" />
+                </div>
+
+                <div className="w-1/2">
+                  <input type="password" id="confirmPassword" name="cpassword" className={inputClass} required placeholder="Confirm Password" />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-700 w-full"
+                className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md hover:bg-primary-600 transition-colors w-full"
               >
                 SIGN UP
               </button>
+
+              <div className="mx-auto text-sm text-gray-900">
+                Already have an account ? <Link href="/login" className="font-semibold text-gray-950 hover:text-black">Sign in</Link>
+              </div>
             </form>
           </div>
         </div>
