@@ -156,13 +156,6 @@ export default function ChatBox() {
                 backgroundBlendMode: "screen"
             }}
             >
-            {/* <div className="absolute inset-0 opacity-20 h-full"
-                style={{
-                    background: `url("image/chatbg.jpg")`,
-                    backgroundSize: "50%"
-                }}
-            /> */}
-
             <ul className="flex flex-col">
                 {messages.map((elem, key, arr) => {
                     return (
