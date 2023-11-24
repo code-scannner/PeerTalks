@@ -1,8 +1,38 @@
- import Link from "next/link";
- export default function Login(){
-  let inputClass = "bg-white mt-1 p-2 w-full border border-gray-200 rounded-md focus:outline-none text-[0.95rem] focus:border-gray-400 transition-colors py-3 px-4";
+"use client"
 
-    return  <>
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+export default function Login() {
+  const router = useRouter();
+  const [error , setError] = useState(false);
+  const login = (event) => {
+    event.preventDefault(); // Prevents the default form submission behavior
+    const formData = new FormData(event.target);
+    const formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
+
+    axios
+      .get(`login/api?username=${formObject.username}&password=${formObject.password}`)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.success) {
+          router.push("/chat");
+        }
+        else{
+          setError(true);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  let inputClass = `bg-white mt-1 p-2 w-full border ${error ? "animate-wiggle border-red-500 focus:border-red-500" : "border-gray-200 focus:border-gray-400"}  rounded-md focus:outline-none text-[0.95rem] transition-colors py-3 px-4`;
+
+  return <>
     <div className="from-primary-50 to-primary-300 bg-gradient-to-br flex items-center justify-center h-screen">
       <div className="flex shadow-md sm:w-full md:w-96 lg:w-7/12 rounded-lg min-h-[70vh]">
         <div className="bg-gradient-to-b from-primary-700/80  to-primary-300/80 w-4/12 rounded-l-lg flex flex-col justify-center items-center">
@@ -16,14 +46,17 @@
             <h2 className="text-2xl font-bold pr-2 text-gray-700">Welcome Back !</h2>
             <h3 className="text-gray-500 text-sm mb-5">Log In to continue</h3>
           </div>
-          <form className="flex flex-col gap-y-3">
+          <form className="flex flex-col gap-y-3" onSubmit={login}>
 
-            <div className="flex flex-col gap-y-5 items-center">
+            <div className="relative flex flex-col gap-y-5 items-center">
               <div className="w-7/12">
-                <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" />
+                <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" onChange={()=>setError(false)} />
               </div>
               <div className="w-7/12">
-                <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" />
+                <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" onChange={()=>setError(false)} />
+              </div>
+              <div className="absolute -bottom-7 mx-auto text-xs text-red-500 font-medium transition-opacity duration-200" style={{opacity: error ? 1 : 0}}>
+                Username or Password is Incorrect!
               </div>
             </div>
 
@@ -42,4 +75,4 @@
       </div>
     </div>
   </>
- }
+}

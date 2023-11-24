@@ -10,6 +10,15 @@ module.exports = {
       fontFamily:{
         fancy : "Noto Serif Balinese, serif"
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-2deg) translateX(0)' },
+          '50%': { transform: 'rotate(2deg) translateX(2px)' },
+        }
+      },
+      animation:{
+        wiggle:"wiggle 100ms linear 3"
+      },
       boxShadow:{
         chat:"rgba(0, 0, 0, 0.15) 1.5px 1.5px 2px",
         profilepage : "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
