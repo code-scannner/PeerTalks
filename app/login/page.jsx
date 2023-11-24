@@ -7,7 +7,7 @@
       <div className="flex shadow-md sm:w-full md:w-96 lg:w-7/12 rounded-lg min-h-[70vh]">
         <div className="bg-gradient-to-b from-primary-700/80  to-primary-300/80 w-4/12 rounded-l-lg flex flex-col justify-center items-center">
           <div className=" w-full h-32 flex flex-col justify-center items-center">
-            <h3 className=" text-white text-xl">Welcome to</h3>
+            <h3 className=" text-white text-xl">Step into</h3>
             <h2 className="text-white text-4xl font-bold">PEER TALKS</h2>
           </div>
         </div>
