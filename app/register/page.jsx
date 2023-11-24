@@ -24,9 +24,10 @@ export default function Register(){
   }
 
     return <>
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white p-8 rounded shadow-md sm:w-full md:w-96 lg:w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+    <div className="bg-primary-100 flex items-center justify-center h-screen">
+      
+      <div className="bg-white p-8 rounded-md shadow-md sm:w-full md:w-96 lg:w-1/3">
+        <h2 className="text-2xl font-bold mb-4 pr-2 text-gray-700 text-center">Sign Up</h2>
         <form className="space-y-4" onSubmit={submit}>
           <div className="flex space-x-4">
             <div className="w-1/2">
@@ -37,7 +38,7 @@ export default function Register(){
                 type="text"
                 id="firstName"
                 name="fname"
-                className="mt-1 p-2 w-full border rounded-md"
+                className="mt-1 p-2 w-full border rounded-md "
                 required
               />
             </div>
@@ -79,10 +80,10 @@ export default function Register(){
                 className="mt-1 p-2 w-full border rounded-md"
                 required
               >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+                <option value="Other">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </div>
@@ -117,7 +118,7 @@ export default function Register(){
 
           <button
             type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full"
+            className="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-700 w-full"
           >
             Sign Up
           </button>
