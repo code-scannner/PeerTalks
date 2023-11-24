@@ -27,6 +27,6 @@ values(
     "I am a good web designer",
     "Male",
     "https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg",
-    curdate(),
+    NULL,
     curdate()
 );
