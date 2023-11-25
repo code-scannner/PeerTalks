@@ -32,7 +32,8 @@ values(
 );
 
 create table contact(
-user_id varchar(20),
-contact_id varchar(20),
-last_con date
+username varchar(20),
+contactname varchar(20),
+last_con date,
+primary key (username,contactname)
 );
