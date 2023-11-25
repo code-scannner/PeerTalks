@@ -10,6 +10,5 @@ export async function GET(req, res) {
     const users = await executeQuery({
         query: `SELECT * FROM USERS WHERE USERNAME IN (SELECT CONTACTNAME FROM CONTACT WHERE USERNAME ="${username}")`
     });
-    console.log(users);
     return Response.json({ users })
 }
