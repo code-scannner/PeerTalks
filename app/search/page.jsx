@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Search() {
@@ -44,10 +45,14 @@ export default function Search() {
 }
 
 function UserCard({user}) {
+    const router = useRouter();
+
     const connect = (username)=>{
         axios.post("/search/api", {contactuser : username, username : localStorage.getItem("username")})
         .then(function(response){
-            console.log(response)
+            if(!response.error){
+                router.push(`/chat/${username}`);
+            }
         }).catch(
             function(error){
                 console.log(error)
