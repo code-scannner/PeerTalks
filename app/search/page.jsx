@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios";
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function Search() {
     const [users, setUsers] = useState([]);
