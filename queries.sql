@@ -30,3 +30,9 @@ values(
     NULL,
     curdate()
 );
+
+create table contact(
+user_id varchar(20),
+contact_id varchar(20),
+last_con date
+);
