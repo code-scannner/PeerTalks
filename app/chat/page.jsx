@@ -11,8 +11,9 @@ export default function Home() {
     useEffect(() => {
         const username = localStorage.getItem("username");
         const password = localStorage.getItem("password");
-        
-        axios.get(`chat/api?username=${username}&password=${password}`).then(function (response) {
+
+        axios.get(`chat/api?username=${username}&password=${password}`)
+        .then(function (response) {
             console.log(response.data.users)
             setChatProfiles(response.data.users)
           }).catch(function (error) {

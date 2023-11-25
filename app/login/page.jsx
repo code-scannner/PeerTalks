@@ -21,8 +21,9 @@ export default function Login() {
     axios
       .get(`login/api?username=${formObject.username}&password=${formObject.password}`)
       .then(function (response) {
-        console.log(response);
         if (response.data.success) {
+          localStorage.setItem("username", formObject.username);
+          localStorage.setItem("password", formObject.password);
           router.push("/chat");
         }
         else {

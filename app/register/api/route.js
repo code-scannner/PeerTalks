@@ -21,6 +21,7 @@ export async function POST(req, res) {
         response.password = body.password;
         return Response.json(response);
     }
+    console.log(response);
 
     return Response.json(response)
 }

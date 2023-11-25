@@ -37,3 +37,9 @@ contactname varchar(20),
 last_con date,
 primary key (username,contactname)
 );
+
+insert into  contact values(
+"username",
+"password",
+curdate()
+);

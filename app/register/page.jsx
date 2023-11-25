@@ -14,7 +14,7 @@ export default function Register() {
 
   const submit = (event) => {
     setLoading(true);
-    event.preventDefault(); // Prevents the default form submission behavior
+    event.preventDefault();
     const formData = new FormData(event.target);
     const formObject = {};
     formData.forEach((value, key) => {
@@ -29,11 +29,12 @@ export default function Register() {
     axios
       .post("register/api", formObject)
       .then(function (response) {
-        console.log(response)
         if (response.data.error) {
           setErrorServer(true);
         }
         else {
+          localStorage.setItem("username", response.data.username);
+          localStorage.setItem("password", response.data.password);
           router.push("/chat");
         }
       })
