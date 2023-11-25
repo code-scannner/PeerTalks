@@ -1,10 +1,10 @@
 "use client"
 import axios from "axios";
-import Link from "next/link"
 import { useState } from "react"
 
 export default function Search() {
     const [users, setUsers] = useState([]);
+   
     const submit = (event) => {
         event.preventDefault();
         const search = event.target.search.value;
@@ -37,20 +37,35 @@ export default function Search() {
                })
                }
         </div> : 
-        <div>Look for Peers</div>}
+        <NoPeers/>
+        }
 
     </>
 }
 
 function UserCard({user}) {
+    const connect = (username)=>{
+        axios.post("/search/api", {contactuser : username, username : localStorage.getItem("username")})
+        .then(function(response){
+            console.log(response)
+        }).catch(
+            function(error){
+                console.log(error)
+            }
+        );
+    }
     return <>
         <div className="min-w-[15rem] p-6 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flex flex-col gap-y-3 items-center">
                 <img className="w-24 h-24 rounded-full shadow-md" src={user.pic} alt={user.username} />
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{"@"+user.username}</h5>
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{user.fname + " " + user.lname}</h5>
-                <Link href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Chat</Link>
+                <button onClick={()=>connect(user.username)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Connect</button>
             </div>
         </div>
     </>
+}
+
+function NoPeers(){
+    return  <div>Look for Peers</div>
 }
