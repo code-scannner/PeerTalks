@@ -3,15 +3,15 @@ import { urltoParams } from '../../../lib/utils'
 
 export async function GET(req, res) {
 
-    const params = urltoParams(req.url)
+    const {username, password} = urltoParams(req.url)
 
     const response = await executeQuery({
-        query: `SELECT * FROM USERS WHERE username = "${params.username}"`
+        query: `SELECT * FROM USERS WHERE username = "${username}"`
     });
     
     if(response && response.length > 0){
     const userpass = response[0].password;
-    const success = userpass == params.password;
+    const success = userpass == password;
     return Response.json({success})
     }
     else{
