@@ -8,8 +8,7 @@ export default function Search() {
     const submit = (event) => {
         event.preventDefault();
         const search = event.target.search.value;
-        console.log(search);
-        axios.get(`search/api?search=${search}`)
+        axios.get(`search/api?search=${search}&username=${localStorage.getItem("username")}`)
             .then(function (response) {
                 setUsers(response.data.users)
             }).catch(function (error) {
