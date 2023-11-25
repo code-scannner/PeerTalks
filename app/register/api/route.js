@@ -15,6 +15,12 @@ export async function POST(req, res) {
             curdate()
             )`
     });
+    
+    if(!response.error){
+        response.username = body.username;
+        response.password = body.password;
+        return Response.json(response);
+    }
 
-    return Response.json({ response })
+    return Response.json(response)
 }

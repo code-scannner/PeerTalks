@@ -2,9 +2,18 @@
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Register() {
+  const [errorClient, setErrorClient] = useState(false);
+  const [errorServer, setErrorServer] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const submit = (event) => {
+    setLoading(true);
     event.preventDefault(); // Prevents the default form submission behavior
     const formData = new FormData(event.target);
     const formObject = {};
@@ -12,15 +21,26 @@ export default function Register() {
       formObject[key] = value;
     });
 
-    if (formObject.password != formObject.cpassword) return;
+    if (formObject.password != formObject.cpassword) {
+      setErrorClient(true);
+      return;
+    }
 
     axios
       .post("register/api", formObject)
       .then(function (response) {
-        console.log(response);
+        console.log(response)
+        if (response.data.error) {
+          setErrorServer(true);
+        }
+        else {
+          router.push("/chat");
+        }
       })
       .catch(function (error) {
         console.log(error);
+      }).finally(function (){
+         setLoading(false);
       });
   };
 
@@ -45,7 +65,12 @@ export default function Register() {
 
               <div className="flex gap-x-4">
                 <div className="w-1/2">
-                  <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" />
+                  <input type="text" id="username" name="username"
+                    style={{ borderColor: errorServer ? 'red' : '' }}
+                    onChange={() => setErrorServer(false)}
+                    className={inputClass}
+                    required placeholder="Username"
+                  />
                 </div>
 
                 <div className="w-1/2">
@@ -68,21 +93,48 @@ export default function Register() {
                   <input type="text" id="lastName" name="lname" className={inputClass} required placeholder="Last Name" />
                 </div>
               </div>
-              <div className="flex gap-x-4">
+              <div className="relative flex gap-x-4">
                 <div className="w-1/2">
-                  <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" />
+                  <input type="password" id="password" name="password" onChange={() => setErrorClient(false)}
+                    required placeholder="Password"
+                    className={inputClass + (errorClient ? " animate-wiggle" : "")}
+                    style={{ borderColor: errorClient ? 'red' : '' }}
+
+                  />
                 </div>
 
                 <div className="w-1/2">
-                  <input type="password" id="confirmPassword" name="cpassword" className={inputClass} required placeholder="Confirm Password" />
+                  <input type="password" id="confirmPassword" name="cpassword" onChange={() => setErrorClient(false)}
+                    className={inputClass + (errorClient ? " animate-wiggle" : "")}
+                    style={{ borderColor: errorClient ? 'red' : '' }}
+                    required placeholder="Confirm Password" />
+                </div>
+                <div className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: errorServer ? 1 : 0 }}>
+                  Username already exists!
+                </div>
+                <div className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: errorClient ? 1 : 0 }}>
+                  Password doesn't match!
                 </div>
               </div>
+
 
               <button
                 type="submit"
                 className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md hover:bg-primary-600 transition-colors w-full"
               >
-                SIGN UP
+                <div className="w-full flex justify-center">
+
+                <ThreeDots
+                  height={24}
+                  width={24}
+                  radius="2"
+                  color="hsl(278 100% 90%)"
+                  visible={loading}
+                />
+                  </div>
+                {!loading && <span className="uppercase">
+                  sign up
+                </span>}
               </button>
 
               <div className="mx-auto text-sm text-gray-900">

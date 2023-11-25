@@ -4,11 +4,14 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 export default function Login() {
   const router = useRouter();
-  const [error , setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const login = (event) => {
-    event.preventDefault(); // Prevents the default form submission behavior
+    event.preventDefault();
+    setLoading(true);
     const formData = new FormData(event.target);
     const formObject = {};
     formData.forEach((value, key) => {
@@ -22,12 +25,15 @@ export default function Login() {
         if (response.data.success) {
           router.push("/chat");
         }
-        else{
+        else {
           setError(true);
         }
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .finally(function () {
+        setLoading(false);
       });
   };
   let inputClass = `bg-white mt-1 p-2 w-full border ${error ? "animate-wiggle border-red-500 focus:border-red-500" : "border-gray-200 focus:border-gray-400"}  rounded-md focus:outline-none text-[0.95rem] transition-colors py-3 px-4`;
@@ -50,12 +56,12 @@ export default function Login() {
 
             <div className="relative flex flex-col gap-y-5 items-center">
               <div className="w-7/12">
-                <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" onChange={()=>setError(false)} />
+                <input type="text" id="username" name="username" className={inputClass} required placeholder="Username" onChange={() => setError(false)} />
               </div>
               <div className="w-7/12">
-                <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" onChange={()=>setError(false)} />
+                <input type="password" id="password" name="password" className={inputClass} required placeholder="Password" onChange={() => setError(false)} />
               </div>
-              <div className="absolute -bottom-7 mx-auto text-xs text-red-500 font-medium transition-opacity duration-200" style={{opacity: error ? 1 : 0}}>
+              <div className="absolute -bottom-7 mx-auto text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: error ? 1 : 0 }}>
                 Username or Password is Incorrect!
               </div>
             </div>
@@ -64,7 +70,19 @@ export default function Login() {
               type="submit"
               className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md mx-auto hover:bg-primary-600 transition-colors w-1/2"
             >
-              LOG IN
+              <div className="w-full flex justify-center">
+
+                <ThreeDots
+                  height={24}
+                  width={24}
+                  radius="2"
+                  color="hsl(278 100% 90%)"
+                  visible={loading}
+                />
+              </div>
+              {!loading && <span className="uppercase">
+                log in
+              </span>}
             </button>
 
             <div className="mx-auto text-sm text-gray-900">
