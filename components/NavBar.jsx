@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
-
+import Image from "next/image";
+import icon from "@/public/image/icon.png"
 const links = [
     {
         name: "Chats",
@@ -43,12 +44,9 @@ export default function NavBar() {
 
     }
     return <nav className={`${!excludedPaths.includes(pathname) ? "" : "hidden"} border-r border-gray-200 bg-white fixed top-0 w-16 left-0 flex flex-col justify-between h-full py-4`}>
-        <Link href={"/"} className={`p-2 text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200 rounded-full focus:outline-none mx-auto w-fit`}>
-            <span className="sr-only">Peer Talks</span>
-            <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-        </Link>
+        <div className={`p-2 mx-auto w-fit`}>
+         <Image src={icon}></Image>
+        </div>
         <div className="flex flex-col items-center justify-center gap-y-7 px-2 py-4">
             {links.map(elem => {
                 const active = pathname.startsWith(elem.link);
