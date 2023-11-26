@@ -4,7 +4,12 @@ import { urltoParams } from '../../../lib/utils'
 export async function GET(req, res) {
     const {username} = urltoParams(req.url)
     const users = await executeQuery({
-        query: `SELECT * FROM USERS WHERE USERNAME ="${username}"`
+        query: `SELECT * FROM USERS WHERE USERNAME ="${username}" LIMIT 1`
     });
-    return Response.json(users)
+
+    if(users.length == 0){
+        return Response.json({});
+    }
+
+    return Response.json(users[0])
 }

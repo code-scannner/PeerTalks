@@ -28,7 +28,7 @@ export default function Home({ children }) {
         </div>
 
         <div
-          className=" lg:col-span-3 flex flex-col items-center w-full h-full gap-y-5"
+          className=" lg:col-span-3 flex flex-col w-full h-full"
           style={{
             background: `url("image/chatbg.jpg")`,
             backgroundColor: "hsl(278 100% 95%)",

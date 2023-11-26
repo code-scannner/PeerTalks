@@ -1,9 +1,14 @@
+import ChatBox from "@/components/main/Chat/ChatBox";
+import MessageTyping from "@/components/main/Chat/MessageTyping";
+import TopHeader from "@/components/main/Chat/TopHeader";
 
-export default function Messages({params}) {
+export default async function Messages({params}) {
     const {username} = params;
-    
+
     return <>
-        This is SLUG
+        <TopHeader/>
+        <ChatBox/>
+        <MessageTyping/>
     </>
        
 }

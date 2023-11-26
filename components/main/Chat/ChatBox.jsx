@@ -148,7 +148,7 @@ const messages = [
 export default function ChatBox() {
     return (
         <div
-            className="relative bg-primary-50 text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh]"
+            className="relative bg-primary-50 text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] flex-grow"
             style={{
                 background: `url("image/chatbg.jpg")`,
                 backgroundColor:"hsl(278 100% 95%)",
