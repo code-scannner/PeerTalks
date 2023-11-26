@@ -23,6 +23,7 @@ export default function Register() {
 
     if (formObject.password != formObject.cpassword) {
       setErrorClient(true);
+      setLoading(false);
       return;
     }
 
@@ -31,21 +32,22 @@ export default function Register() {
       .then(function (response) {
         if (response.data.error) {
           setErrorServer(true);
-        }
-        else {
+        } else {
           localStorage.setItem("username", response.data.username);
           localStorage.setItem("password", response.data.password);
-          router.push("/chat");
+          router.push("register/setprofile");
         }
       })
       .catch(function (error) {
         console.log(error);
-      }).finally(function () {
+      })
+      .finally(function () {
         setLoading(false);
       });
   };
 
-  let inputClass = "bg-white mt-1 p-2 w-full border border-gray-200 rounded-md focus:outline-none text-[0.95rem] focus:border-gray-400 transition-colors py-3 px-4";
+  let inputClass =
+    "bg-white mt-1 p-2 w-full border border-gray-200 rounded-md focus:outline-none text-[0.95rem] focus:border-gray-400 transition-colors py-3 px-4";
 
   return (
     <>
@@ -60,60 +62,76 @@ export default function Register() {
           <div className="bg-gray-50 p-8 rounded-r-lg w-2/3">
             <div className="ml-2 flex flex-col gap-y-1 items-center">
               <h2 className="text-2xl font-bold pr-2 text-gray-700">Sign Up</h2>
-              <h3 className="text-gray-500 text-sm mb-5">Create an account to start chatting with peers</h3>
+              <h3 className="text-gray-500 text-sm mb-5">
+                Create an account to start chatting with peers
+              </h3>
             </div>
-            <form className="flex flex-col gap-y-3 items-center" onSubmit={submit}>
-
-
+            <form
+              className="flex flex-col gap-y-4 items-center"
+              onSubmit={submit}
+            >
               <div className="w-1/2">
-                <input type="text" id="username" name="username"
-                  style={{ borderColor: errorServer ? 'red' : '' }}
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  style={{ borderColor: errorServer ? "red" : "" }}
                   onChange={() => setErrorServer(false)}
                   className={inputClass}
-                  required placeholder="Username"
+                  required
+                  placeholder="Username"
                 />
               </div>
 
               <div className="w-1/2">
-                <input type="password" id="password" name="password" onChange={() => setErrorClient(false)}
-                  required placeholder="Password"
-                  className={inputClass + (errorClient ? " animate-wiggle" : "")}
-                  style={{ borderColor: errorClient ? 'red' : '' }}
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  onChange={() => setErrorClient(false)}
+                  required
+                  placeholder="Password"
+                  className={
+                    inputClass + (errorClient ? " animate-wiggle" : "")
+                  }
+                  style={{ borderColor: errorClient ? "red" : "" }}
                 />
               </div>
               <div className="w-1/2">
-                <input type="password" id="confirmPassword" name="cpassword" onChange={() => setErrorClient(false)}
-                  className={inputClass + (errorClient ? " animate-wiggle" : "")}
-                  style={{ borderColor: errorClient ? 'red' : '' }}
-                  required placeholder="Confirm Password" />
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="cpassword"
+                  onChange={() => setErrorClient(false)}
+                  className={
+                    inputClass + (errorClient ? " animate-wiggle" : "")
+                  }
+                  style={{ borderColor: errorClient ? "red" : "" }}
+                  required
+                  placeholder="Confirm Password"
+                />
               </div>
 
-              {/* <div className="flex gap-x-4">
-                <div className="w-1/2">
-                  <input type="text" id="firstName" name="fname" className={inputClass} required placeholder="First Name" />
-                </div>
-
-                <div className="w-1/2">
-                  <input type="text" id="lastName" name="lname" className={inputClass} required placeholder="Last Name" />
-                </div>
-              </div> */}
-
-              <div className="w-1/2">
-                <div className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: errorServer ? 1 : 0 }}>
+              <div className="w-1/2 relative">
+                <div
+                  className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200"
+                  style={{ opacity: errorServer ? 1 : 0 }}
+                >
                   Username already exists!
                 </div>
-                <div className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: errorClient ? 1 : 0 }}>
+                <div
+                  className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200"
+                  style={{ opacity: errorClient ? 1 : 0 }}
+                >
                   Password doesn't match!
                 </div>
               </div>
 
-
               <button
-              type="submit"
-              className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md mx-auto hover:bg-primary-600 transition-colors w-1/2"
-            >
+                type="submit"
+                className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md mx-auto hover:bg-primary-600 transition-colors w-1/2"
+              >
                 <div className="w-full flex justify-center">
-
                   <ThreeDots
                     height={24}
                     width={24}
@@ -122,13 +140,17 @@ export default function Register() {
                     visible={loading}
                   />
                 </div>
-                {!loading && <span className="uppercase">
-                  sign up
-                </span>}
+                {!loading && <span className="uppercase">sign up</span>}
               </button>
 
               <div className="mx-auto text-sm text-gray-900">
-                Already have an account ? <Link href="/login" className="font-semibold text-gray-950 hover:text-black">Log In</Link>
+                Already have an account ?{" "}
+                <Link
+                  href="/login"
+                  className="font-semibold text-gray-950 hover:text-black"
+                >
+                  Log In
+                </Link>
               </div>
             </form>
           </div>

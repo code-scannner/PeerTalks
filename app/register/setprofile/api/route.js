@@ -1,16 +1,10 @@
 import executeQuery from '../../../lib/db'
 
 export async function POST(req, res) {
-
+//picture 
     const body = await req.json();
-
     const response = await executeQuery({
-        query: `INSERT INTO USERS (username, password, regDate ) 
-        VALUES(
-            "${body.username}",
-            "${body.password}",
-            curdate()
-            )`
+        query: `UPDATE TABLE USERS SET (FNAME,LNAME,GENDER,BIO)`
     });
     
     if(!response.error){

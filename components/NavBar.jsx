@@ -36,7 +36,7 @@ const links = [
     }
 ]
 
-const excludedPaths = ["/","/register","/login"]
+const excludedPaths = ["/","/register","/login","/register/setprofile"]
 
 export default function NavBar() {
     const pathname = usePathname();
