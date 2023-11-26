@@ -1,10 +1,6 @@
-import StartConversation from "@/components/fallback/StartConversation";
-import TopHeader from "@/components/main/Chat/TopHeader";
 import ChatList from "@/components/main/Chat/ChatList";
-import ChatBox from "@/components/main/Chat/ChatBox";
-import MessageTyping from "@/components/main/Chat/MessageTyping";
 
-export default function Home() {
+export default function Home({children}) {
 
     return <>
         <div className="border rounded lg:grid lg:grid-cols-4 min-h-full h-screen">
@@ -19,13 +15,7 @@ export default function Home() {
                 backgroundSize: "50%",
                 backgroundBlendMode: "screen"
             }}>
-                {/* <div className="w-full">
-                    <TopHeader user = {users[0]}/>
-                    <ChatBox />
-                    <MessageTyping />
-                </div> */}
-            
-                    <StartConversation />
+                {children}
             </div>
         </div>
     </>
