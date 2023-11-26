@@ -1,4 +1,21 @@
+"use client"
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Home() {
+  const [users,setUsers]=useState({});
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    axios
+      .get(`profile/api?username=${username}`)
+      .then(function (response) {
+        setUsers(response.data)
+        console.log(users)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
+  
     return (
       <>
         {/* Header Section */}
@@ -10,7 +27,7 @@ export default function Home() {
               alt="profile"
             />
             <div className="ml-8 space-y-1">
-              <h1 className="text-xl font-semibold">UserName</h1>
+              <h1 className="text-xl font-semibold">{users.username}</h1>
               <h2 className="text-sm text-gray-600">More Description</h2>
             </div>
           </div>
