@@ -40,8 +40,8 @@ export default function Register() {
       })
       .catch(function (error) {
         console.log(error);
-      }).finally(function (){
-         setLoading(false);
+      }).finally(function () {
+        setLoading(false);
       });
   };
 
@@ -58,34 +58,37 @@ export default function Register() {
             </div>
           </div>
           <div className="bg-gray-50 p-8 rounded-r-lg w-2/3">
-            <div className="ml-2 flex flex-col gap-y-1">
+            <div className="ml-2 flex flex-col gap-y-1 items-center">
               <h2 className="text-2xl font-bold pr-2 text-gray-700">Sign Up</h2>
-              <h3 className="text-gray-500 text-sm mb-6">Create an account to start chatting with Peers</h3>
+              <h3 className="text-gray-500 text-sm mb-5">Create an account to start chatting with peers</h3>
             </div>
-            <form className="flex flex-col gap-y-3" onSubmit={submit}>
+            <form className="flex flex-col gap-y-3 items-center" onSubmit={submit}>
 
-              <div className="flex gap-x-4">
-                <div className="w-1/2">
-                  <input type="text" id="username" name="username"
-                    style={{ borderColor: errorServer ? 'red' : '' }}
-                    onChange={() => setErrorServer(false)}
-                    className={inputClass}
-                    required placeholder="Username"
-                  />
-                </div>
 
-                <div className="w-1/2">
-                  <select id="gender" name="gender" className={inputClass} required >
-                    <option value="Other" disable hidden>
-                      Gender
-                    </option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+              <div className="w-1/2">
+                <input type="text" id="username" name="username"
+                  style={{ borderColor: errorServer ? 'red' : '' }}
+                  onChange={() => setErrorServer(false)}
+                  className={inputClass}
+                  required placeholder="Username"
+                />
               </div>
-              <div className="flex gap-x-4">
+
+              <div className="w-1/2">
+                <input type="password" id="password" name="password" onChange={() => setErrorClient(false)}
+                  required placeholder="Password"
+                  className={inputClass + (errorClient ? " animate-wiggle" : "")}
+                  style={{ borderColor: errorClient ? 'red' : '' }}
+                />
+              </div>
+              <div className="w-1/2">
+                <input type="password" id="confirmPassword" name="cpassword" onChange={() => setErrorClient(false)}
+                  className={inputClass + (errorClient ? " animate-wiggle" : "")}
+                  style={{ borderColor: errorClient ? 'red' : '' }}
+                  required placeholder="Confirm Password" />
+              </div>
+
+              {/* <div className="flex gap-x-4">
                 <div className="w-1/2">
                   <input type="text" id="firstName" name="fname" className={inputClass} required placeholder="First Name" />
                 </div>
@@ -93,23 +96,9 @@ export default function Register() {
                 <div className="w-1/2">
                   <input type="text" id="lastName" name="lname" className={inputClass} required placeholder="Last Name" />
                 </div>
-              </div>
-              <div className="relative flex gap-x-4">
-                <div className="w-1/2">
-                  <input type="password" id="password" name="password" onChange={() => setErrorClient(false)}
-                    required placeholder="Password"
-                    className={inputClass + (errorClient ? " animate-wiggle" : "")}
-                    style={{ borderColor: errorClient ? 'red' : '' }}
+              </div> */}
 
-                  />
-                </div>
-
-                <div className="w-1/2">
-                  <input type="password" id="confirmPassword" name="cpassword" onChange={() => setErrorClient(false)}
-                    className={inputClass + (errorClient ? " animate-wiggle" : "")}
-                    style={{ borderColor: errorClient ? 'red' : '' }}
-                    required placeholder="Confirm Password" />
-                </div>
+              <div className="w-1/2">
                 <div className="absolute -bottom-7 w-full text-center text-xs text-red-500 font-medium transition-opacity duration-200" style={{ opacity: errorServer ? 1 : 0 }}>
                   Username already exists!
                 </div>
@@ -120,19 +109,19 @@ export default function Register() {
 
 
               <button
-                type="submit"
-                className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md hover:bg-primary-600 transition-colors w-full"
-              >
+              type="submit"
+              className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md mx-auto hover:bg-primary-600 transition-colors w-1/2"
+            >
                 <div className="w-full flex justify-center">
 
-                <ThreeDots
-                  height={24}
-                  width={24}
-                  radius="2"
-                  color="hsl(278 100% 90%)"
-                  visible={loading}
-                />
-                  </div>
+                  <ThreeDots
+                    height={24}
+                    width={24}
+                    radius="2"
+                    color="hsl(278 100% 90%)"
+                    visible={loading}
+                  />
+                </div>
                 {!loading && <span className="uppercase">
                   sign up
                 </span>}
