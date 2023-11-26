@@ -46,7 +46,7 @@ export default function NavBar() {
         </Link>
         <div className="flex flex-col items-center justify-center gap-y-7 px-2 py-4">
             {links.map(elem => {
-                const active = pathname == elem.link;
+                const active = pathname.startsWith(elem.link);
                 return <Link href={elem.link} key={elem.name} className={`p-2 ${!active ? "text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100" : "text-white bg-primary-600 hover:bg-primary-700"} transition-colors duration-200 rounded-full focus:outline-none`}>
                     <span className="sr-only">{elem.name}</span>
                     {elem.icon}
