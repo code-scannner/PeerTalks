@@ -5,27 +5,29 @@ import { useState } from "react"
 
 export default function Search() {
     const [users, setUsers] = useState([]);
-   
+    const [found,setFound]=useState(false)
     const submit = (event) => {
         event.preventDefault();
         const search = event.target.search.value;
         axios.get(`search/api?search=${search}&username=${localStorage.getItem("username")}`)
             .then(function (response) {
+                if(response.data.users.length==0)
+                {
+                    setFound(true);
+                }
                 setUsers(response.data.users)
             }).catch(function (error) {
                 console.log(error);
             })
     }
-    return <>
+    return <div>
         <div className="mx-3 my-3">
-            <div className="relative text-gray-600">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" className="w-6 h-6 text-gray-300">
+            <div className=" text-gray-600">
+                <form onSubmit={submit} onChange={()=>setFound(false)}className="flex relative w-1/2 mx-auto">
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" className="w-6 h-6 text-gray-300 absolute left-2 top-2">
                         <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                </span>
-                <form onSubmit={submit}>
-                    <input type="search" name="search" className="block w-full py-2 pl-10 pr-3 bg-gray-100 rounded outline-none" placeholder="Search" required />
+                    <input type="search" name="search" className="block w-full py-2 pl-10 pr-3 bg-gray-100 rounded outline-none mx-auto" placeholder="Search" required />
                 </form>
             </div>
         </div>
@@ -38,10 +40,10 @@ export default function Search() {
                })
                }
         </div> : 
-        <NoPeers/>
+        found?<NotFound/>:<NoPeers/>
         }
 
-    </>
+    </div>
 }
 
 function UserCard({user}) {
@@ -72,5 +74,14 @@ function UserCard({user}) {
 }
 
 function NoPeers(){
-    return  <div>Look for Peers</div>
+    return  <div className="flex justify-center">
+        <div className="text-gray-400">Looking for new Peers? Try searching by typing their usernames</div>
+    </div>
+}
+
+function NotFound()
+{
+    return  <div className="flex justify-center">
+    <div className="text-gray-400">No such new users exist. Try a different username</div>
+</div>
 }
