@@ -37,6 +37,11 @@ const excludedPaths = ["/","/register","/login"]
 
 export default function NavBar() {
     const pathname = usePathname();
+    const logout = ()=>{
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+
+    }
     return <nav className={`${!excludedPaths.includes(pathname) ? "" : "hidden"} border-r border-gray-200 bg-white fixed top-0 w-16 left-0 flex flex-col justify-between h-full py-4`}>
         <Link href={"/"} className={`p-2 text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200 rounded-full focus:outline-none mx-auto w-fit`}>
             <span className="sr-only">Peer Talks</span>
@@ -54,7 +59,9 @@ export default function NavBar() {
             })}
 
         </div>
-        <Link href={"/logout"} className={`p-2 text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200 rounded-full focus:outline-none mx-auto w-fit`}>
+        <Link href="/login"
+            onClick={logout}
+        className={`p-2 text-primary-400 bg-primary-50 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200 rounded-full focus:outline-none mx-auto w-fit`}>
             <span className="sr-only">logout</span>
             <svg className="w-7 h-7 p-1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" stroke="currentColor" fill="currentColor" version="1.1" id="Capa_1" viewBox="0 0 384.971 384.971" space="preserve">
                 <g>
