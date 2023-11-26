@@ -27,7 +27,6 @@ export default function Home() {
             />
             <div className="ml-8 space-y-1">
               <h1 className="text-xl font-semibold">@{user.username}</h1>
-              <h2 className="text-sm text-gray-600">More Description</h2>
             </div>
           </div>
         </div>
@@ -52,10 +51,10 @@ export default function Home() {
           {/* Email */}
           <div className="mb-4">
             <label htmlFor="myEmail" className="text-gray-600 text-sm block mb-1">
-              Email
+              First Name
             </label>
             <input
-              type="email"
+              value={user.fname}
               name = "email"
               className="w-full border rounded-md py-2 px-3 focus:outline-gray-300"
             />
@@ -64,10 +63,10 @@ export default function Home() {
           {/* Phone */}
           <div className="mb-4">
             <label htmlFor="myPhone" className="text-gray-600 text-sm block mb-1">
-              Phone
+              Last Name
             </label>
             <input
-              type="Phone"
+              value={user.lname}
               id="myPhone"
               name="myPhone"
               className="w-full border rounded-md py-2 px-3"
@@ -81,7 +80,8 @@ export default function Home() {
             </label>
             <select className="w-full border rounded-md py-2 px-3">
               <option
-               name = "gender" >
+               name = "gender"
+                >
                 Male
               </option>
               <option name = "gender">
