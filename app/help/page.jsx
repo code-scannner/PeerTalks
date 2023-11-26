@@ -1,16 +1,16 @@
-import Link from "next/link"
 export default function Home() {
-    // return <>Help</>
     return (
         <>
-            <div className="bg-primary-100">
+            <div className="px-24">
                 <div className="my-8 text-center">
-                    <h1 className="text-3xl font-bold mb-4">Welcome to Peer Talks Help Center</h1>
+                    <h1 className="text-3xl font-bold my-4">Welcome to <span className="text-primary-700">Peer Talks</span> Help Center</h1>
                 </div>
-                {/* Add your Help page content here */}
+                <section className="text-justify leading-7">
+
                 Welcome to Peer Talks Help Center
                 Greetings! 🚀 At Peer Talks, we're committed to ensuring you have the best experience possible. Whether you're new to the platform or seeking assistance on specific features, our Help Center is here to guide you every step of the way.
                 Navigate seamlessly, find answers effortlessly, and explore the full potential of Peer Talks. From frequently asked questions to step-by-step guides and troubleshooting tips, this hub is designed to empower you with the knowledge you need.
+                </section>
                 <div className="my-8">
                     <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
 

@@ -10,7 +10,7 @@ export default function ChatList({ }) {
     useEffect(() => {
         const { username, password } = getUserDetails();
 
-        axios.get(`chat/api?username=${username}&password=${password}`)
+        axios.get(`/chat/api?username=${username}&password=${password}`)
             .then(function (response) {
                 console.log('here the searching ')
                 setUsers(response.data.users)
