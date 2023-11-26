@@ -24,7 +24,7 @@ from
 insert into
     users
 values
-(
+    (
         "utkarshtri",
         "root",
         "Utkarsh",
@@ -46,41 +46,53 @@ create table contact(
 insert into
     contact
 values
-("username", "password", curdate());
+    ("username", "password", curdate());
 
 create table message(
-chat_id varchar(20),
-sender varchar(20),
-content varchar(255),
-time timestamp,
-seen boolean
+    chat_id bigint,
+    sender varchar(20),
+    content varchar(255),
+    time timestamp,
+    seen boolean
 );
 
-alter table contact
-drop column last_con;
+alter table
+    contact drop column last_con;
 
-alter table contact
-add column chat_id bigint;
+alter table
+    contact
+add
+    column chat_id bigint;
 
 create table chats(
-chat_id bigint primary key,
-create_time datetime
+    chat_id bigint primary key,
+    create_time datetime
 );
 
-alter table contact
-add foreign key(chat_id) references chats(chat_id) on delete cascade;
+alter table
+    contact
+add
+    foreign key(chat_id) references chats(chat_id) on delete cascade;
 
-alter table message
-add foreign key(chat_id) references chats(chat_id) on delete cascade;
+alter table
+    message
+add
+    foreign key(chat_id) references chats(chat_id) on delete cascade;
 
-alter table message
-add foreign key(sender) references users(username) on delete cascade;
+alter table
+    message
+add
+    foreign key(sender) references users(username) on delete cascade;
 
-alter table contact
-add foreign key(username) references users(username) on delete cascade;
+alter table
+    contact
+add
+    foreign key(username) references users(username) on delete cascade;
 
-alter table contact
-add foreign key(contactname) references users(username) on delete cascade;
+alter table
+    contact
+add
+    foreign key(contactname) references users(username) on delete cascade;
 
 create table notifications(
     username varchar(20),
