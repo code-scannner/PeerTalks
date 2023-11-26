@@ -2,34 +2,36 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { MdNotificationsNone } from "react-icons/md";
+import { MdOutlineSearch } from "react-icons/md";
+import { FiUser } from "react-icons/fi";
+import {BiQuestionMark} from 'react-icons/bi'
 import icon from "@/public/image/icon.png"
+import { TbMessage2 } from "react-icons/tb";
 const links = [
     {
         name: "Chats",
-        icon: <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-        </svg>,
+        icon : <TbMessage2 className="w-7 h-7" />,
         link: "/chat"
     },
     {
         name: "Search",
-        icon:<svg className="w-7 h-7" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24">
-        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>,
+        icon:<MdOutlineSearch className="w-7 h-7"/>,
         link: "/search"
     },
     {
+        name: "Notification",
+        icon:<MdNotificationsNone className="w-7 h-7" />,
+        link: "/notification"
+    },
+    {
         name: "Profile",
-        icon: <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>,
+        icon: <FiUser className="w-7 h-7"/>,
         link: "/profile"
     },
     {
         name: "Help",
-        icon: <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} xmlns="http://www.w3.org/2000/svg" d="M12 19H12.01M8.21704 7.69689C8.75753 6.12753 10.2471 5 12 5C14.2091 5 16 6.79086 16 9C16 10.6565 14.9931 12.0778 13.558 12.6852C12.8172 12.9988 12.4468 13.1556 12.3172 13.2767C12.1629 13.4209 12.1336 13.4651 12.061 13.6634C12 13.8299 12 14.0866 12 14.6L12 16" />
-        </svg>,
+        icon: <BiQuestionMark className="w-7 h-7" />,
         link: "/help"
     }
 ]

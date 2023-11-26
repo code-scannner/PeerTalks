@@ -24,10 +24,10 @@ export default function Search() {
         <div className="mx-3 my-3">
             <div className=" text-gray-600">
                 <form onSubmit={submit} onChange={()=>setFound(false)}className="flex relative w-1/2 mx-auto">
-                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" className="w-6 h-6 text-gray-300 absolute left-2 top-2">
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" className="w-6 h-6 text-gray-300 absolute left-3 top-2">
                         <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    <input type="search" name="search" className="block w-full py-2 pl-10 pr-3 bg-gray-100 rounded outline-none mx-auto" placeholder="Search" required />
+                    <input type="search" name="search" className="block w-full py-2 pl-12 pr-3 bg-gray-100 focus:bg-slate-100 transition-colors rounded-full outline-none mx-auto" placeholder="Search" required />
                 </form>
             </div>
         </div>

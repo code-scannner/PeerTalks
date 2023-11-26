@@ -2,7 +2,7 @@ import ChatBox from "@/components/main/Chat/ChatBox";
 import MessageTyping from "@/components/main/Chat/MessageTyping";
 import TopHeader from "@/components/main/Chat/TopHeader";
 
-export default async function Messages({params, searchParams}) {
+export default async function Messages({params}) {
     const {username} = params;
 
     return <>

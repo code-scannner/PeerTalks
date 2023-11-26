@@ -30,7 +30,7 @@ export default function Home({ children }) {
         <div
           className=" lg:col-span-3 flex flex-col w-full h-full"
           style={{
-            background: `url("image/chatbg.jpg")`,
+            background: `url("/image/chatbg.jpg")`,
             backgroundColor: "hsl(278 100% 95%)",
             backgroundSize: "50%",
             backgroundBlendMode: "screen",
