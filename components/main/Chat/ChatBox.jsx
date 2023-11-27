@@ -1,172 +1,75 @@
-const messages = [
-    {
-        is_sender: false,
-        message: "Hey Bob! How's it going?",
-    },
-    {
-        is_sender: true,
-        message: "Hi Alice! I'm good, thanks. Just finished a workout. How about you?"
-    },
-    {
-        is_sender: false,
-        message: "Nice! I'm doing well too. Just got back from a coffee shop. ☕️"
-    },
-    {
-        is_sender: true,
-        message: "Sounds great! Anything exciting happening today?"
-    },
-    {
-        is_sender: false,
-        message: "Not much, just catching up on some work. What about you?"
-    },
-    {
-        is_sender: true,
-        message: "Same here, trying to get ahead on some projects. By the way, have you watched that new movie everyone's talking about?"
-    },
-    {
-        is_sender: false,
-        message: "Not yet! Is it worth watching?"
-    },
-    {
-        is_sender: true,
-        message: "Definitely! We should plan a movie night. How about this weekend?"
-    },
-    {
-        is_sender: false,
-        message: "Sounds like a plan! I'm in. What's the movie called?"
-    },
-    {
-        is_sender: true,
-        message: "It's called 'Beyond the Stars'. Heard the storyline is amazing."
-    },
-    {
-        is_sender: false,
-        message: "Awesome! I'll check it out. Can't wait for the weekend now. 😄"
-    },
-    {
-        is_sender: true,
-        message: "Me neither! It's a date then. Anything else on your mind?"
-    },
-    {
-        is_sender: false,
-        message: "Nope, just looking forward to the weekend. Anything specific you want to do?"
-    },
-    {
-        is_sender: true,
-        message: "Maybe grab dinner before the movie? I heard there's a new Italian place downtown."
-    },
-    {
-        is_sender: false,
-        message: "Perfect! Italian sounds great. Let's do it."
-    },
-    {
-        is_sender: true,
-        message: "Great! Looking forward to it. Text me if anything comes up."
-    },
-    {
-        is_sender: false,
-        message: "Will do! Catch you later, Bob."
-    },
-    {
-        is_sender: true,
-        message: "See ya, Alice! Take care."
-    },
-    {
-        is_sender: false,
-        message: "Hey Bob! How's it going?",
-    },
-    {
-        is_sender: true,
-        message: "Hi Alice! I'm good, thanks. Just finished a workout. How about you?"
-    },
-    {
-        is_sender: false,
-        message: "Nice! I'm doing well too. Just got back from a coffee shop. ☕️"
-    },
-    {
-        is_sender: true,
-        message: "Sounds great! Anything exciting happening today?"
-    },
-    {
-        is_sender: false,
-        message: "Not much, just catching up on some work. What about you?"
-    },
-    {
-        is_sender: true,
-        message: "Same here, trying to get ahead on some projects. By the way, have you watched that new movie everyone's talking about?"
-    },
-    {
-        is_sender: false,
-        message: "Not yet! Is it worth watching?"
-    },
-    {
-        is_sender: true,
-        message: "Definitely! We should plan a movie night. How about this weekend?"
-    },
-    {
-        is_sender: false,
-        message: "Sounds like a plan! I'm in. What's the movie called?"
-    },
-    {
-        is_sender: true,
-        message: "It's called 'Beyond the Stars'. Heard the storyline is amazing."
-    },
-    {
-        is_sender: false,
-        message: "Awesome! I'll check it out. Can't wait for the weekend now. 😄"
-    },
-    {
-        is_sender: true,
-        message: "Me neither! It's a date then. Anything else on your mind?"
-    },
-    {
-        is_sender: false,
-        message: "Nope, just looking forward to the weekend. Anything specific you want to do?"
-    },
-    {
-        is_sender: true,
-        message: "Maybe grab dinner before the movie? I heard there's a new Italian place downtown."
-    },
-    {
-        is_sender: false,
-        message: "Perfect! Italian sounds great. Let's do it."
-    },
-    {
-        is_sender: true,
-        message: "Great! Looking forward to it. Text me if anything comes up."
-    },
-    {
-        is_sender: false,
-        message: "Will do! Catch you later, Bob."
-    },
-    {
-        is_sender: true,
-        message: "See ya, Alice! Take care."
-    },
-]
+"use client"
+
+import axios from "axios";
+import { useEffect, useState } from "react"
 
 export default function ChatBox() {
+    const [messages, setMessages] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/chat/api/messages`)
+            .then(function (response) {
+                setMessages(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+
+    const sendMessage = (event) => {
+        event.preventDefault();
+        
+        const message = event.target.textbox.value;
+
+        axios
+            .post(`/chat/api/messages`, {message : message})
+            .then(function (response) {
+                if(response.error) {
+                    console.log(response)
+                }
+                else{
+                    setMessages([...messages, response.data]);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        event.target.textbox.value = '';
+
+    }
     return (
-        <div
-            className="relative bg-primary-50 text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] flex-grow"
-            style={{
-                background: `url("/image/chatbg.jpg")`,
-                backgroundColor:"hsl(278 100% 95%)",
-                backgroundSize: "50%",
-                backgroundBlendMode: "screen"
-            }}
+        <>
+            <div
+                className="relative bg-primary-50 text-[0.93rem] w-full p-6 overflow-y-auto h-[80vh] flex-grow"
+                style={{
+                    background: `url("/image/chatbg.jpg")`,
+                    backgroundColor: "hsl(278 100% 95%)",
+                    backgroundSize: "50%",
+                    backgroundBlendMode: "screen"
+                }}
             >
-            <ul className="flex flex-col">
-                {messages.map((elem, key, arr) => {
-                    return (
-                        <li key={key} className={`${arr[key - 1] && arr[key - 1].is_sender != elem.is_sender ? "mt-4" : "mt-0.5"} flex ${elem.is_sender ? "justify-end" : "justify-start"}`}>
-                            <div className={`relative max-w-xl px-4 py-2 ${elem.is_sender ? "bg-primary-600/90 text-white rounded-s-xl rounded-e-md" : "text-gray-700 bg-white/90 rounded-e-xl rounded-s-md"} shadow-chat`}>
-                                <span className="block">{elem.message}</span>
-                            </div>
-                        </li>
-                    )
-                })}
-            </ul>
-        </div>
+                <ul className="flex flex-col">
+                    {messages.map((elem, key, arr) => {
+                        return (
+                            <li key={key} className={`${arr[key - 1] && arr[key - 1].is_sender != elem.is_sender ? "mt-4" : "mt-0.5"} flex ${elem.is_sender ? "justify-end" : "justify-start"}`}>
+                                <div className={`relative max-w-xl px-4 py-2 ${elem.is_sender ? "bg-primary-600/90 text-white rounded-s-xl rounded-e-md" : "text-gray-700 bg-white/90 rounded-e-xl rounded-s-md"} shadow-chat`}>
+                                    <span className="block">{elem.message}</span>
+                                </div>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <form onSubmit={sendMessage} className="flex items-center justify-between gap-x-4 w-full p-3 bg-white border-t border-gray-300">
+                <input type="text" name = "textbox" placeholder="Message" className="block w-full py-2 px-4 mx-2 bg-gray-100 transition-colors rounded-lg outline-none focus:text-gray-700"/>
+                <button type="submit">
+                    <svg className="w-5 h-5 text-primary-500 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                </button>
+            </form>
+        </>
     )
 }
+

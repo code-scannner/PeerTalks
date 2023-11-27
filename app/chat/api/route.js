@@ -8,7 +8,7 @@ export async function GET(req, res) {
     }
 
     const users = await executeQuery({
-        query: `SELECT * FROM USERS WHERE USERNAME IN (SELECT CONTACTNAME FROM CONTACT WHERE USERNAME ="${username}")`
+        query: `SELECT * FROM USERS U JOIN CONTACT C ON U.USERNAME = C.CONTACTNAME AND C.USERNAME = "${username}"`
     });
     return Response.json({ users })
 }
