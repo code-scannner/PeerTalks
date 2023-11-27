@@ -9,3 +9,11 @@ export async function GET(req, res) {
 
     return Response.json(notifications);
 }
+export async function DELETE(req, res) {
+    const {username} = urltoParams(req.url);
+    const notifications = await executeQuery({
+        query: `DELETE FROM NOTIFICATIONS WHERE USERNAME = "${username}"`
+    });
+
+    return Response.json(notifications);
+}
