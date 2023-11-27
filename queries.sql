@@ -36,6 +36,11 @@ values
         curdate()
     );
 
+create table chats(
+    chat_id bigint primary key,
+    create_time datetime
+);
+
 create table contact(
     username varchar(20),
     contactname varchar(20),
@@ -52,6 +57,7 @@ insert into
 values
     ("username", "password", curdate());
 
+
 create table message(
     chat_id bigint,
     sender varchar(20),
@@ -62,10 +68,6 @@ create table message(
     foreign key(sender) references users(username) on delete cascade
 );
 
-create table chats(
-    chat_id bigint primary key,
-    create_time datetime
-);
 
 create table notifications(
     username varchar(20),
@@ -116,3 +118,9 @@ create table friendrequest(
 --     contact
 -- add
 --     foreign key(contactname) references users(username) on delete cascade;
+
+--alter table users
+--add column DOB varchar(20);
+
+--alter table users
+--drop column pic

@@ -20,7 +20,6 @@ export default function Register() {
     formData.forEach((value, key) => {
       formObject[key] = value;
     });
-
     if (formObject.password != formObject.cpassword) {
       setErrorClient(true);
       setLoading(false);
@@ -30,7 +29,9 @@ export default function Register() {
     axios
       .post("register/api", formObject)
       .then(function (response) {
-        if (response.data.error) {
+        console.log(response.data.error)
+        if (response.data.error) 
+        {
           setErrorServer(true);
         } else {
           localStorage.setItem("username", response.data.username);
