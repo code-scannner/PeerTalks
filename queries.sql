@@ -100,3 +100,12 @@ create table notifications(
     time timestamp,
     foreign key(username) references users(username)
 );
+
+create table friendrequest(
+	sender varchar(20),
+    receiver varchar(20),
+	time timestamp,
+    primary key(sender, receiver),
+    foreign key(sender) references users(username) on delete cascade,
+    foreign key(receiver) references users(username) on delete cascade
+);

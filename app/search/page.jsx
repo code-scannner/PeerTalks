@@ -1,18 +1,21 @@
 "use client"
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Search() {
+
+    const filterUser = (username)=>{
+        console.log("connected to ", username);
+        setUsers(users.filter((elem)=>elem.username != username));
+    }
     const [users, setUsers] = useState([]);
-    const [found,setFound]=useState(false)
+    const [found, setFound] = useState(false)
     const submit = (event) => {
         event.preventDefault();
         const search = event.target.search.value;
         axios.get(`search/api?search=${search}&username=${localStorage.getItem("username")}`)
             .then(function (response) {
-                if(response.data.users.length==0)
-                {
+                if (response.data.users.length == 0) {
                     setFound(true);
                 }
                 setUsers(response.data.users)
@@ -23,7 +26,7 @@ export default function Search() {
     return <div>
         <div className="mx-3 my-3">
             <div className=" text-gray-600">
-                <form onSubmit={submit} onChange={()=>setFound(false)}className="flex relative w-1/2 mx-auto">
+                <form onSubmit={submit} onChange={() => setFound(false)} className="flex relative w-1/2 mx-auto">
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" className="w-6 h-6 text-gray-300 absolute left-3 top-2">
                         <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -33,55 +36,54 @@ export default function Search() {
         </div>
 
         {users.length > 0 ?
-        <div className="p-4 w-full grid grid-cols-5 gap-x-5 gap-y-5">
-               { 
-               users.map((elem)=>{
-                return <UserCard user = {elem} key = {elem.username}/>
-               })
-               }
-        </div> : 
-        found?<NotFound/>:<NoPeers/>
+            <div className="p-4 w-full grid grid-cols-5 gap-x-5 gap-y-5">
+                {
+                    users.map((elem) => {
+                        return <UserCard user={elem} key={elem.username} filterUser = {filterUser} />
+                    })
+                }
+            </div> :
+            found ? <NotFound /> : <NoPeers />
         }
 
     </div>
 }
 
-function UserCard({user}) {
-    const router = useRouter();
+function UserCard({ user, filterUser }) {
 
-    const connect = (username)=>{
-        axios.post("/search/api", {contactuser : username, username : localStorage.getItem("username")})
-        .then(function(response){
-            if(!response.error){
-                router.push(`/chat/${username}`);
-            }
-        }).catch(
-            function(error){
-                console.log(error)
-            }
-        );
+    const connect = (username) => {
+        axios.post("/search/api", { contactuser: username, username: localStorage.getItem("username") })
+            .then(function (response) {
+                if (!response.error) {
+                    alert("Request sent");
+                    filterUser(username);
+                }
+            }).catch(
+                function (error) {
+                    console.log(error)
+                }
+            );
     }
     return <>
         <div className="min-w-[15rem] p-6 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flex flex-col gap-y-3 items-center">
                 <img className="w-24 h-24 rounded-full shadow-md" src={user.pic} alt={user.username} />
-                <h5 className="text-lg font-light text-gray-600 font-fancy">{"@"+user.username}</h5>
+                <h5 className="text-lg font-light text-gray-600 font-fancy">{"@" + user.username}</h5>
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{user.fname + " " + user.lname}</h5>
-                <button onClick={()=>connect(user.username)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Connect</button>
+                <button onClick={() => connect(user.username)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Connect</button>
             </div>
         </div>
     </>
 }
 
-function NoPeers(){
-    return  <div className="flex justify-center">
+function NoPeers() {
+    return <div className="flex justify-center">
         <div className="text-gray-400">Looking for new Peers? Try searching by typing their usernames</div>
     </div>
 }
 
-function NotFound()
-{
-    return  <div className="flex justify-center">
-    <div className="text-gray-400">No such new users exist. Try a different username</div>
-</div>
+function NotFound() {
+    return <div className="flex justify-center">
+        <div className="text-gray-400">No such new users exist. Try a different username</div>
+    </div>
 }

@@ -6,6 +6,8 @@ export async function GET(req, res) {
     const response = await executeQuery({
         query:`SELECT * FROM USERS WHERE USERNAME LIKE "%${search}%" AND USERNAME<>"${username}" AND USERNAME NOT IN (
             SELECT CONTACTNAME FROM CONTACT WHERE USERNAME = "${username}"
+        ) AND USERNAME NOT IN (
+            SELECT RECEIVER FROM FRIENDREQUEST WHERE SENDER = "${username}"
         )`
     })
     
@@ -17,19 +19,12 @@ export async function POST(req, res){
     const body = await req.json();
     const username = body.username;
     const contactuser = body.contactuser;
-    const chatid = new Date().getTime();
-    const chatres = await executeQuery({
-        query: `INSERT INTO CHATS VALUES(${chatid}, now())`
+    const response = await executeQuery({
+        query: `INSERT INTO FRIENDREQUEST VALUES("${username}", "${contactuser}", now())`
     })
-    if(chatres.error){
-        return Response.json(chatres);
+    if(response.error){
+        return Response.json(response);
     }
-
-    const response = await executeQuery(
-        {
-            query : `INSERT INTO CONTACT VALUES("${username}", "${contactuser}", ${chatid}),("${contactuser}", "${username}", ${chatid})`
-        }
-    );
 
     return Response.json(response);
 

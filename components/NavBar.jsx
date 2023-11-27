@@ -8,6 +8,7 @@ import { FiUser } from "react-icons/fi";
 import {BiQuestionMark} from 'react-icons/bi'
 import icon from "@/public/image/icon.png"
 import { TbMessage2 } from "react-icons/tb";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 const links = [
     {
         name: "Chats",
@@ -18,6 +19,11 @@ const links = [
         name: "Search",
         icon:<MdOutlineSearch className="w-7 h-7"/>,
         link: "/search"
+    },
+    {
+        name: "Friend Request",
+        icon:<AiOutlineUsergroupAdd className="w-7 h-7"/>,
+        link: "/friendrequest"
     },
     {
         name: "Notification",
