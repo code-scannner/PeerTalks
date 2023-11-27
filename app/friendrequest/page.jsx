@@ -19,7 +19,7 @@ export default function FriendRequest() {
             console.log(error);
           });
       }, [])
-    return <div className="flex items-center justify-center h-screen bg-gray-100">
+    return users.length > 0 ? <div className="flex items-center justify-center h-screen bg-gray-100">
         <div className="bg-white rounded-lg shadow-xl border p-8 w-3xl">
             <div className="mb-4">
                 <h1 className="font-semibold text-gray-800">Friend Requests</h1>
@@ -31,7 +31,7 @@ export default function FriendRequest() {
             }
         </div>
     </div>
-  ) : (
+    :(
     <Noreq />
   );
 }
@@ -75,8 +75,6 @@ function RequestCard({user, filterUser}) {
             </div>
         </div>
       </div>
-    </div>
-  );
 }
 
 function Noreq() {
