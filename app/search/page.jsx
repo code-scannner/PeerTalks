@@ -23,7 +23,7 @@ export default function Search() {
                 console.log(error);
             })
     }
-    return <div>
+    return <div >
         <div className="mx-3 my-3">
             <div className=" text-gray-600">
                 <form onSubmit={submit} onChange={() => setFound(false)} className="flex relative w-1/2 mx-auto">
