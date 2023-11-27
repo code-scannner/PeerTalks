@@ -11,6 +11,8 @@ export async function GET(req, res) {
 
     return Response.json(users);
 }
+
+//accept invitation handle post req
 export async function POST(req, res) {
     const body = await req.json();
 
@@ -31,16 +33,37 @@ export async function POST(req, res) {
     }
     
     let msg = "";
-    if (!accepted) {
-        msg = "Declined Your Friend Request"
-    }
-    else {
-        msg = "Accepted Your Friend Request"
-    }
+    if (!accepted)
+        msg = "declined Your Friend Request"
+    else
+        msg = "accepted Your Friend Request"
 
-    const noti = await executeQuery({
+    await executeQuery({
         query: `INSERT INTO NOTIFICATIONS VALUES("${receiver}", "${sender}", "${msg}", now())`
     });
+
+    // creating contact of sender and receiver if accepted
+    if(accepted){
+        const id = new Date().getTime();
+        const chat_id = await executeQuery({
+            query: `INSERT INTO CHATS VALUES(${id}, now())`
+        });
+        if(chat_id.error){
+            console.log(chat_id);
+            return Response.json(chat_id);
+        }
+
+        const chat = await executeQuery({
+            query: `INSERT INTO CONTACT VALUES("${receiver}", "${sender}", ${id}),("${sender}", "${receiver}", ${id})`
+        });
+
+        if(!chat.error){
+            console.log(chat);
+        }
+        chat.id = chat_id;
+        return Response.json(chat);
+    }
+
+    return Response.json({noti});
     
-    return Response.json(noti);
 }
