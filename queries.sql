@@ -39,8 +39,12 @@ values
 create table contact(
     username varchar(20),
     contactname varchar(20),
-    last_con date,
-    primary key (username, contactname)
+    -- last_con date,
+    chat_id bigint,
+    primary key (username, contactname),
+    foreign key(chat_id) references chats(chat_id) on delete cascade,
+    foreign key(username) references users(username) on delete cascade,
+    foreign key(contactname) references users(username) on delete cascade
 );
 
 insert into
@@ -53,46 +57,15 @@ create table message(
     sender varchar(20),
     content varchar(255),
     time timestamp,
-    seen boolean
+    seen boolean,
+    foreign key(chat_id) references chats(chat_id) on delete cascade,
+    foreign key(sender) references users(username) on delete cascade
 );
-
-alter table
-    contact drop column last_con;
-
-alter table
-    contact
-add
-    column chat_id bigint;
 
 create table chats(
     chat_id bigint primary key,
     create_time datetime
 );
-
-alter table
-    contact
-add
-    foreign key(chat_id) references chats(chat_id) on delete cascade;
-
-alter table
-    message
-add
-    foreign key(chat_id) references chats(chat_id) on delete cascade;
-
-alter table
-    message
-add
-    foreign key(sender) references users(username) on delete cascade;
-
-alter table
-    contact
-add
-    foreign key(username) references users(username) on delete cascade;
-
-alter table
-    contact
-add
-    foreign key(contactname) references users(username) on delete cascade;
 
 create table notifications(
     username varchar(20),
@@ -111,3 +84,35 @@ create table friendrequest(
     foreign key(sender) references users(username) on delete cascade,
     foreign key(receiver) references users(username) on delete cascade
 );
+
+-- alter table
+--     contact drop column last_con;
+
+-- alter table
+--     contact
+-- add
+--     column chat_id bigint;
+-- alter table
+--     contact
+-- add
+--     foreign key(chat_id) references chats(chat_id) on delete cascade;
+
+-- alter table
+--     message
+-- add
+--     foreign key(chat_id) references chats(chat_id) on delete cascade;
+
+-- alter table
+--     message
+-- add
+--     foreign key(sender) references users(username) on delete cascade;
+
+-- alter table
+--     contact
+-- add
+--     foreign key(username) references users(username) on delete cascade;
+
+-- alter table
+--     contact
+-- add
+--     foreign key(contactname) references users(username) on delete cascade;
