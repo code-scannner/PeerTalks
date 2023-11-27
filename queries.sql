@@ -118,3 +118,6 @@ create table friendrequest(
 --     contact
 -- add
 --     foreign key(contactname) references users(username) on delete cascade;
+
+alter table users
+add column DOB varchar(20);
