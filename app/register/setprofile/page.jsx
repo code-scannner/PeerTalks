@@ -6,7 +6,6 @@ export default function UserProfile() {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
     
 
 
@@ -27,30 +26,30 @@ export default function UserProfile() {
         }
     };
 
-    const submit = (event) => {
-        setLoading(true);
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
-        });
-        axios
-          .post("/register/setprofile/api", formObject)
-          .then(function (response) {
-            if (response.data.error) {
-              notFound();
-            } else {
-              router.push("/chat");
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-          .finally(function () {
-            setLoading(false);
-          });
-      };
+    // const submit = (event) => {
+    //     setLoading(true);
+    //     event.preventDefault();
+    //     const formData = new FormData(event.target);
+    //     const formObject = {};
+    //     formData.forEach((value, key) => {
+    //       formObject[key] = value;
+    //     });
+    //     axios
+    //       .post("/register/setprofile/api", formObject)
+    //       .then(function (response) {
+    //         if (response.data.error) {
+    //           notFound();
+    //         } else {
+    //           router.push("/chat");
+    //         }
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       })
+    //       .finally(function () {
+    //         setLoading(false);
+    //       });
+    //   };
 
     return (
         <div className="from-primary-50 to-primary-300 bg-gradient-to-br flex items-center justify-center h-screen">
@@ -62,7 +61,7 @@ export default function UserProfile() {
                     </div>
                 </div>
                 <div className="bg-gray-50 p-8 rounded-r-lg w-7/12 flex flex-col justify-center">
-                    <form id="profile-form" onSubmit={submit}>
+                    <form id="profile-form">
                         <div className="mb-4">
                             <label htmlFor="profilePic" className="block text-gray-500 font-medium mb-2 text-center">
                                 {!user.profilePic && <span>Add a profile picture</span>}
@@ -101,7 +100,7 @@ export default function UserProfile() {
                         <div className="w-full mt-4">
                             <div className="w-full">
                                 <select id="gender" name="gender" required className="w-full h-12 border rounded-md p-2 focus:outline-gray-300" >
-                                    <option value="Other" disable hidden>
+                                    <option value="Other" disable='true' hidden='true'>
                                         Gender
                                     </option>
                                     <option value="Male">Male</option>
