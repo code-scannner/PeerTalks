@@ -96,9 +96,11 @@ add
 
 create table notifications(
     username varchar(20),
+    senderuser varchar(20),
     message varchar(255),
     time timestamp,
-    foreign key(username) references users(username)
+    foreign key(username) references users(username),
+    foreign key(senderuser) references users(username)
 );
 
 create table friendrequest(

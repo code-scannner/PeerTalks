@@ -8,7 +8,7 @@ export default function FriendRequest() {
     useEffect(() => {
         const username = localStorage.getItem("username");
         axios
-          .get(`/friendrequest/api?username=${username}`, JSON.stringify({username : username}))
+          .get(`/friendrequest/api?username=${username}`)
           .then(function (response) {
             setUsers(response.data)
           })
