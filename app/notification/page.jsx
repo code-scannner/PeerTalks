@@ -68,26 +68,6 @@ function NotificationCard({ noti }) {
     </div>
   );
 }
-function NotificationCard({ noti }) {
-  return (
-    <div className="flex">
-      <img
-        className="w-8 h-8 rounded-full"
-        src="https://randomuser.me/api/portraits/women/20.jpg"
-        alt={noti.senderuser}
-      />
-      <div className="ms-3 text-sm font-normal">
-        <span className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
-          {noti.fname} {noti.lname}
-        </span>
-        <div className="mb-2 text-sm font-normal">{noti.message}</div>
-        <span className="inline-flex px-2.5 py-1.5 text-xs font-medium text-center">
-          {new Date(noti.time).toLocaleTimeString()}
-        </span>
-      </div>
-    </div>
-  );
-}
 
 function NoNoti() {
   return (
