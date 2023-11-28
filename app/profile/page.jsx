@@ -1,7 +1,6 @@
 "use client"
 import Profilepic from "@/components/Profilepic";
 import { useEffect, useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 export default function Home() {
   const [user, setUser] = useState({});
@@ -10,8 +9,7 @@ export default function Home() {
 
     const fieldname = e.target.name;
     const fieldValue = e.target.value;
-    setUser({...user, [fieldname] : fieldValue})
-    
+    setUser({ ...user, [fieldname]: fieldValue })
   }
   useEffect(() => {
     const username = localStorage.getItem("username")
@@ -24,6 +22,28 @@ export default function Home() {
         console.log(error);
       });
   }, [])
+
+  const saveUser = (e) => {
+    e.preventDefault();
+    axios.post("/register/setprofile/api", {
+      fname : user.fname,
+      lname : user.lname,
+      username : user.username,
+      gender : user.gender && "Other",
+      bio : user.bio
+    })
+      .then(function (response) {
+        if (response.data.error) {
+          console.log(response.data.error);
+        } else {
+          alert("profile Updated");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+  
   const inputClass = "w-full border rounded-md py-2 px-3 focus:outline-gray-300";
   return (
     <>
@@ -36,10 +56,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mx-auto px-8 py-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 max-h-screen -translate-y-12">
+      <form onSubmit={saveUser} className="mx-auto px-8 py-5 pb-12 flex flex-col gap-y-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 max-h-screen -translate-y-12">
         <div className="text-gray-600 text-lg font-semibold mb-4">Basic Info</div>
-
-        <div className="mb-3">
+        <div>
           <label htmlFor="bio" className="text-gray-600 text-sm block mb-1">
             Bio
           </label>
@@ -53,7 +72,7 @@ export default function Home() {
           ></textarea>
         </div>
 
-        <div className="mb-4">
+        <div>
           <label htmlFor="fname" className="text-gray-600 text-sm block mb-1">
             First Name
           </label>
@@ -66,7 +85,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="mb-4">
+        <div>
           <label htmlFor="lName" className="text-gray-600 text-sm block mb-1">
             Last Name
           </label>
@@ -79,7 +98,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="mb-4">
+        <div>
           <label htmlFor="gender" className="text-gray-600 text-sm block mb-1">
             Gender
           </label>
@@ -97,26 +116,25 @@ export default function Home() {
           </select>
         </div>
 
-        <div className="mb-4">
+        {user.DOB && <div>
           <label htmlFor="dob" className="text-gray-600 text-sm block mb-1">
             Date of Birth
           </label>
           <input
-          readOnly
+            readOnly
             type="text"
             format="dd-mm-yyyy"
             value={user.DOB}
             id="dob"
             name="dob"
             className={inputClass}
-            
           />
-        </div>
+        </div>}
         <button
           type="submit"
-          className="font-semibold  bg-primary-500 text-white  px-4 py-2 rounded-md hover:bg-primary-600 transition-colors "
+          className="w-24 font-semibold my-4 bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600 transition-colors "
         >Update</button>
-      </div>
+      </form>
     </>
   );
 }
