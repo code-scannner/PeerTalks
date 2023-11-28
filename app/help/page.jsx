@@ -8,9 +8,9 @@ export default function Home() {
                 </div>
                 <section className="text-justify leading-7">
 
-                Welcome to Peer Talks Help Center
-                Greetings! 🚀 At Peer Talks, we're committed to ensuring you have the best experience possible. Whether you're new to the platform or seeking assistance on specific features, our Help Center is here to guide you every step of the way.
-                Navigate seamlessly, find answers effortlessly, and explore the full potential of Peer Talks. From frequently asked questions to step-by-step guides and troubleshooting tips, this hub is designed to empower you with the knowledge you need.
+                    Welcome to Peer Talks Help Center
+                    Greetings! 🚀 At Peer Talks, we're committed to ensuring you have the best experience possible. Whether you're new to the platform or seeking assistance on specific features, our Help Center is here to guide you every step of the way.
+                    Navigate seamlessly, find answers effortlessly, and explore the full potential of Peer Talks. From frequently asked questions to step-by-step guides and troubleshooting tips, this hub is designed to empower you with the knowledge you need.
                 </section>
                 <div className="my-8">
                     <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
@@ -34,46 +34,32 @@ export default function Home() {
                             Remember to keep your login credentials secure. You can log back in anytime to resume your Peer Talks experience.
                         </p>
                     </div>
-                    <div className="mb-6">
-                        <h3 className="text-xl font-bold mb-2">Q: How can I search for a friend on Peer Talks?</h3>
-                        <p className="text-gray-600">
-                            A: Looking to connect with a friend? Follow these steps:
-                            <br />
-                            1. Navigate to the chat page.
-                            <br />
-                            2. Click on the search icon
-                            <span className="inline-block align-middle">
-                                {/* Include your search icon SVG here */}
-                                <svg className="w-6 h-5 mb-1 mx-1" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24">
-                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </span>
-                            in the navigation bar.
-                            <br />
-                            3. Enter your friend's username in the search bar.
-                            <br />
-                            4. Select your friend from the search results and start a chat.
-                            <br />
-                            Connecting with friends is just a search away!
-                        </p>
-                    </div>
-
-                    <div className="mb-6">
-                        <h3 className="text-xl font-bold mb-2">Q: Can I edit my profile information on Peer Talks?</h3>
-                        <p className="text-gray-600">
-                            A: Absolutely! Keep your profile up-to-date:
-                            <br />
-                            1. Navigate to your profile.
-                            <br />
-                            2. Select Profile icon <span className="inline-block mx-auto"><FiUser className="w-5 h-6 "/></span> from the navigation bar.
-                            <br />
-                            3. Make the desired changes to your profile picture, bio, or other details.
-                            <br />
-                            4. Click "Save" to update your profile.
-                        </p>
-                    </div>
+                    <FAQ question="How can I search for a friend on Peer Talks?">
+                        <span>Click on the search icon<span className="inline-block align-middle"><svg className="w-6 h-5 mb-1 mx-1" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>in the navigation bar.</span>
+                        <span>Enter your friend's username in the search bar.</span>
+                        <span>Select your friend from the search results and start a chat.</span>
+                    </FAQ>
+                    <FAQ question="Can I edit my profile information on Peer Talks?">
+                        <span>Select Profile icon <span className="inline-block mx-auto"><FiUser className="w-5 h-6 " /></span> from the navigation bar.</span>
+                        <span>Make the desired changes to your profile picture, bio, or other details.</span>
+                        <span>Click "Update" to update your profile.</span>
+                    </FAQ>
                 </div>
             </div>
         </>
     );
+}
+
+function FAQ({ children, question }) {
+    return <div className="mb-6">
+        <h3 className="text-xl font-bold mb-2">Q. {question}</h3>
+
+        <ol className="text-gray-600 flex flex-col gap-y-2 list-decimal">
+            {children.map((elem, idx) => {
+                return <li key={idx} className="relative ml-3">
+                    {elem}
+                </li>
+            })}
+        </ol>
+    </div>
 }
