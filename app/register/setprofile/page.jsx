@@ -5,15 +5,15 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useRouter } from "next/navigation";
 import "react-datepicker/dist/react-datepicker.css";
+import { ThreeDots } from "react-loader-spinner";
 export default function UserProfile() {
-  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const router = useRouter();
 
   const submit = (event) => {
-    setLoading(true);
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData(event.target);
     const formObject = {};
     formData.forEach((value, key) => {
@@ -112,7 +112,16 @@ export default function UserProfile() {
               type="submit"
               className="font-semibold tracking-wider mt-8 bg-primary-500 text-white px-4 py-3 rounded-md hover:bg-primary-600 transition-colors w-full"
             >
-              SAVE PROFILE
+              <div className="w-full flex justify-center">
+                  <ThreeDots
+                    height={24}
+                    width={24}
+                    radius="2"
+                    color="hsl(278 100% 90%)"
+                    visible={loading}
+                  />
+                </div>
+                {!loading && <span className="uppercase">save profile</span>}
             </button>
           </form>
         </div>

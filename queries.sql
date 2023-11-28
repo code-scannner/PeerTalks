@@ -11,7 +11,7 @@ create table users(
     lname varchar(20),
     bio varchar(255),
     gender enum('Male', 'Female', 'Other'),
-    pic varchar(255),
+    DOB varchar(20),
     lastLogin date,
     regDate date
 );
