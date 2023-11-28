@@ -5,8 +5,7 @@ export async function POST(req, res) {
     const body = await req.json();
 
     const response = await executeQuery({
-        query: `UPDATE USERS SET FNAME="${body.fname}",LNAME="${body.lname}",GENDER="${body.gender}",BIO="${body.bio}",DOB="${body.dob}"
-        WHERE USERNAME="${body.username}"`
+        query: `UPDATE USERS SET FNAME="${body.fname}",LNAME="${body.lname}",GENDER="${body.gender}",BIO="${body.bio}" ${body.dob?(', DOB=' +'"' +body.dob + '"') : ""} WHERE USERNAME="${body.username}"`
     });
     
     if(!response.error){
