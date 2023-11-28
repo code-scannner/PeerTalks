@@ -1,4 +1,5 @@
 "use client"
+import Profilepic from "@/components/Profilepic";
 import { useEffect, useState } from "react";
 import axios from "axios";
 export default function Home() {
@@ -17,16 +18,11 @@ export default function Home() {
   
     return (
       <>
-        {/* Header Section */}
         <div className="w-full bg-gradient-to-b from-primary-100 to-slate-100 h-72 flex justify-center items-center pb-5">
           <div className="flex items-center w-6/12">
-            <img
-              className="object-cover w-28 h-28 rounded-xl ring-4 ring-white shadow-lg"
-              src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
-              alt="profile"
-            />
+            <Profilepic gender={user.gender} className="h-24 w-24 border border-3 border-gray-600 bg-white shadow-lg"/>
             <div className="ml-8 space-y-1">
-              <h1 className="text-xl font-semibold">@{user.username}</h1>
+              <h1 className="text-xl font-semibold text-gray-600">@{user.username}</h1>
             </div>
           </div>
         </div>
@@ -100,6 +96,10 @@ export default function Home() {
               className="w-full border rounded-md py-2 px-3"
             />
           </div>
+          <button
+              type="submit"
+              className="font-semibold  bg-primary-500 text-white  px-4 py-2 rounded-md hover:bg-primary-600 transition-colors "
+            >Update</button>
         </div>
       </>
     );
