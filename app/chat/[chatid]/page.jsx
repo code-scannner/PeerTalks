@@ -6,7 +6,7 @@ export default async function Messages({params}) {
 
     return <>
         <TopHeader chatid = {chatid}/>
-        <ChatBox/>
+        <ChatBox chatid = {chatid}/>
     </>
        
 }

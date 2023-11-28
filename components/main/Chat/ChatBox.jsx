@@ -3,13 +3,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 
-export default function ChatBox() {
+export default function ChatBox({chatid}) {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
         axios
-            .get(`/chat/api/messages`)
+            .get(`/chat/api/messages?chatid=${chatid}&sender=${localStorage.getItem("username")}`)
             .then(function (response) {
-                setMessages(response.data)
+                if(!response.data.error)
+                    setMessages(response.data.messages)
             })
             .catch(function (error) {
                 console.log(error);
@@ -20,9 +21,9 @@ export default function ChatBox() {
         event.preventDefault();
         
         const message = event.target.textbox.value;
-
+        const username = localStorage.getItem("username")
         axios
-            .post(`/chat/api/messages`, {message : message})
+            .post(`/chat/api/messages`, {message : message, chatid : chatid, sender : username})
             .then(function (response) {
                 if(response.error) {
                     console.log(response)
@@ -54,7 +55,7 @@ export default function ChatBox() {
                         return (
                             <li key={key} className={`${arr[key - 1] && arr[key - 1].is_sender != elem.is_sender ? "mt-4" : "mt-0.5"} flex ${elem.is_sender ? "justify-end" : "justify-start"}`}>
                                 <div className={`relative max-w-xl px-4 py-2 ${elem.is_sender ? "bg-primary-600/90 text-white rounded-s-xl rounded-e-md" : "text-gray-700 bg-white/90 rounded-e-xl rounded-s-md"} shadow-chat`}>
-                                    <span className="block">{elem.message}</span>
+                                    <span className="block">{elem.content}</span>
                                 </div>
                             </li>
                         )

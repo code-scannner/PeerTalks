@@ -44,7 +44,6 @@ create table chats(
 create table contact(
     username varchar(20),
     contactname varchar(20),
-    -- last_con date,
     chat_id bigint,
     primary key (username, contactname),
     foreign key(chat_id) references chats(chat_id) on delete cascade,
