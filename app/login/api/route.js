@@ -9,12 +9,10 @@ export async function GET(req, res) {
         query: `SELECT * FROM USERS WHERE username = "${username}"`
     });
     
-    if(response && response.length > 0){
-    const userpass = response[0].password;
-    const success = userpass == password;
-    return Response.json({success})
+    if(response && response.length > 0 && response[0].password == password){
+        return Response.json({success : true})
     }
     else{
-        return Response.json(false)
+        return Response.json({success : false})
     }
 }
