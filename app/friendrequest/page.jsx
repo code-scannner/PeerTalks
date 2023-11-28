@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function FriendRequest() {
   const [users, setUsers] = useState([]);
@@ -53,6 +54,10 @@ function RequestCard({ user, filterUser }) {
       .then(function (response) {
         if (!response.error) {
           filterUser(user.username)
+          if(accepted)
+            toast.success(`Connected to ${user.username}`);
+          else
+            toast.error("Declined Request");
         }
         else console.log(response.error)
       })

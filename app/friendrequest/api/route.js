@@ -64,6 +64,6 @@ export async function POST(req, res) {
         return Response.json(chat);
     }
 
-    return Response.json({noti});
+    return Response.json({success : true});
     
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react"
 import Profilepic from "@/components/Profilepic";
 import ProfileLink from "@/components/utils/ProfileLink";
+import { toast } from "react-toastify";
 export default function Search() {
 
     const filterUser = (username) => {
@@ -56,7 +57,7 @@ function UserCard({ user, filterUser }) {
         axios.post("/search/api", { contactuser: username, username: localStorage.getItem("username") })
             .then(function (response) {
                 if (!response.error) {
-                    alert("Request sent");
+                    toast.success("Request Sent!");
                     filterUser(username);
                 }
             }).catch(

@@ -1,5 +1,7 @@
 import NavBar from '@/components/NavBar'
 import './globals.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: 'PeerTalks',
@@ -16,6 +18,10 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Balinese&display=swap" rel="stylesheet"></link>
       </head>
       <body className='relative selection:bg-primary-400 selection:text-white' style={{ fontFamily: "Poppins, sans-serif" }} >
+      <ToastContainer
+        pauseOnHover={false}
+        autoClose={2000}
+      />
         <NavBar />
         <main>
           {children}
