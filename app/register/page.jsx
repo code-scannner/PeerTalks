@@ -36,6 +36,7 @@ export default function Register() {
         } else {
           localStorage.setItem("username", response.data.username);
           localStorage.setItem("password", response.data.password);
+          setLoading(true);
           router.push("register/setprofile");
         }
       })

@@ -79,7 +79,7 @@ function RequestCard({ user, filterUser }) {
 
 function Noreq() {
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-b from-primary-100 to-slate-100">
       <div className="text-gray-500 text-2xl">No friend requests</div>
     </div>
   );

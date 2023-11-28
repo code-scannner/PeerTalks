@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios";
 import { useState } from "react"
-
+import Profilepic from "@/components/Profilepic";
 export default function Search() {
 
     const filterUser = (username)=>{
@@ -67,7 +67,7 @@ function UserCard({ user, filterUser }) {
     return <>
         <div className="min-w-[15rem] p-6 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flex flex-col gap-y-3 items-center">
-                <img className="w-24 h-24 rounded-full shadow-md" src={user.pic} alt={user.username} />
+                <Profilepic gender={user.gender} className="h-20 w-20"/>
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{"@" + user.username}</h5>
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{user.fname + " " + user.lname}</h5>
                 <button onClick={() => connect(user.username)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Connect</button>

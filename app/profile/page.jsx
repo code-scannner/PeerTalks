@@ -4,7 +4,7 @@ import axios from "axios";
 export default function Home() {
   const [user,setUser]=useState({});
   useEffect(() => {
-    const username = localStorage.getItem("username");
+    const username = localStorage.getItem("username")
     axios
       .get(`profile/api?username=${username}`)
       .then(function (response) {
@@ -31,24 +31,22 @@ export default function Home() {
           </div>
         </div>
   
-        {/* Main Content Section */}
-        <div className="mx-auto px-8 py-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 min-h-screen -translate-y-12">
+        <div className="mx-auto px-8 py-5 bg-white shadow-profilepage transition-shadow rounded-md w-6/12 max-h-screen -translate-y-12">
           <div className="text-gray-600 text-lg font-semibold mb-4">Basic Info</div>
   
-          {/* Bio */}
-          <div className="mb-4">
+          <div className="mb-3">
             <label htmlFor="bio" className="text-gray-600 text-sm block mb-1">
               Bio
             </label>
             <textarea
               id="bio"
               name="bio"
+              value={user.bio}
               className="w-full border rounded-md py-2 px-3 focus:outline-gray-300"
               rows="2"
             ></textarea>
           </div>
   
-          {/* Email */}
           <div className="mb-4">
             <label htmlFor="myEmail" className="text-gray-600 text-sm block mb-1">
               First Name
@@ -60,7 +58,6 @@ export default function Home() {
             />
           </div>
   
-          {/* Phone */}
           <div className="mb-4">
             <label htmlFor="myPhone" className="text-gray-600 text-sm block mb-1">
               Last Name
@@ -73,48 +70,33 @@ export default function Home() {
             />
           </div>
   
-          {/* Gender */}
           <div className="mb-4">
             <label htmlFor="myGender" className="text-gray-600 text-sm block mb-1">
               Gender
             </label>
             <select className="w-full border rounded-md py-2 px-3">
               <option
-               name = "gender"
-                >
+               name = "gender" selected={"Male" == user.gender}>
                 Male
               </option>
-              <option name = "gender">
+              <option name = "gender" selected={"Female" == user.gender}>
                 Female
               </option>
-              <option name = "gender">
+              <option name = "gender" selected={"Other" == user.gender}>
                 Other
               </option>
             </select>
           </div>
   
-          {/* Country */}
           <div className="mb-4">
             <label htmlFor="myCountry" className="text-gray-600 text-sm block mb-1">
-              Country
+              Date of Birth
             </label>
             <input
               type="text"
               id="myCountry"
+              value={user.DOB}
               name="myCountry"
-              className="w-full border rounded-md py-2 px-3"
-            />
-          </div>
-  
-          {/* Language */}
-          <div className="mb-4">
-            <label htmlFor="myLanguage" className="text-gray-600 text-sm block mb-1">
-              Language
-            </label>
-            <input
-              type="text"
-              id="myLanguage"
-              name="myLanguage"
               className="w-full border rounded-md py-2 px-3"
             />
           </div>
