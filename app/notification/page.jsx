@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import Profilepic from "@/components/Profilepic";
+import ProfileLink from "@/components/utils/ProfileLink";
 export default function Notification() {
   useEffect(() => {
     const username = localStorage.getItem("username");
@@ -67,9 +68,7 @@ function NotificationCard({ noti }) {
       />
       <div className="flex items-center gap-x-10">
         <div className="">
-          <span className="text-sm font-semibold text-gray-900">
-            {noti.fname} {noti.lname}
-          </span>
+        <ProfileLink fname = {noti.fname} lname = {noti.lname} username = {noti.username} className="text-sm font-semibold text-gray-900" />
           <span className="text-sm font-normal"> {noti.message}</span>
         </div>
         <div className=" text-gray-500 py-7 text-xs font-medium text-left bg">

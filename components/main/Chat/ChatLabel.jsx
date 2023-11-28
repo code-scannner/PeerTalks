@@ -7,10 +7,10 @@ export default function ChatLabel({user, active}){
     <Profilepic className="object-cover w-10 h-10 rounded-full" gender={user.gender}/>
     <div className="w-full pb-2">
         <div className="flex justify-between">
-            <span className="block ml-2 font-semibold text-gray-600 capitalize truncate ">{user.fname} {user.lname}</span>
-            {/* <span className="block ml-2 text-sm text-gray-600">time</span> */}
+            <span className="block ml-2 font-semibold text-gray-600 capitalize truncate">
+                {user.fname} {user.lname}
+            </span>
         </div>
-        {/* <span className="block ml-2 text-sm text-gray-600">lastmessage</span> */}
     </div>
 </Link>
 }

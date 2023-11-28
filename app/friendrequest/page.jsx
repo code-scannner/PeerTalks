@@ -1,8 +1,8 @@
 "use client";
 
 import Profilepic from "@/components/Profilepic";
+import ProfileLink from "@/components/utils/ProfileLink";
 import axios from "axios";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { IoCheckmarkSharp } from "react-icons/io5";
@@ -65,7 +65,7 @@ function RequestCard({ user, filterUser }) {
       <Profilepic gender = {user.gender} className="w-12 h-12 rounded-full border border-gray-100 shadow-sm"  />
    </div>
     <div className="col-span-3">
-        <span className="font-semibold text-gray-800">{user.fname} {user.lname}</span>
+    <ProfileLink fname = {user.fname} lname = {user.lname} username = {user.username} className="font-semibold text-gray-800" />
         <span className="text-gray-400"> wants to be your friend</span>
     </div>
     <div className="font-semibold flex gap-x-3 mt-3">

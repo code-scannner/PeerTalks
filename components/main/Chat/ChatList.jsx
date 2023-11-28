@@ -13,7 +13,6 @@ export default function ChatList() {
 
         axios.get(`/chat/api?username=${username}&password=${password}`)
             .then(function (response) {
-                console.log('here the searching ')
                 setUsers(response.data.users)
             }).catch(function (error) {
                 console.log(error);

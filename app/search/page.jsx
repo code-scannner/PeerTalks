@@ -2,11 +2,12 @@
 import axios from "axios";
 import { useState } from "react"
 import Profilepic from "@/components/Profilepic";
+import ProfileLink from "@/components/utils/ProfileLink";
 export default function Search() {
 
-    const filterUser = (username)=>{
+    const filterUser = (username) => {
         console.log("connected to ", username);
-        setUsers(users.filter((elem)=>elem.username != username));
+        setUsers(users.filter((elem) => elem.username != username));
     }
     const [users, setUsers] = useState([]);
     const [found, setFound] = useState(false)
@@ -39,7 +40,7 @@ export default function Search() {
             <div className="p-4 w-full grid grid-cols-5 gap-x-5 gap-y-5">
                 {
                     users.map((elem) => {
-                        return <UserCard user={elem} key={elem.username} filterUser = {filterUser} />
+                        return <UserCard user={elem} key={elem.username} filterUser={filterUser} />
                     })
                 }
             </div> :
@@ -67,9 +68,9 @@ function UserCard({ user, filterUser }) {
     return <>
         <div className="min-w-[15rem] p-6 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flex flex-col gap-y-3 items-center">
-                <Profilepic gender={user.gender} className="h-20 w-20"/>
+                <Profilepic gender={user.gender} className="h-20 w-20" />
                 <h5 className="text-lg font-light text-gray-600 font-fancy">{"@" + user.username}</h5>
-                <h5 className="text-lg font-light text-gray-600 font-fancy">{user.fname + " " + user.lname}</h5>
+                <ProfileLink fname={user.fname} lname={user.lname} username={user.username} className="text-lg font-light text-gray-600 font-fancy" />
                 <button onClick={() => connect(user.username)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 ">Connect</button>
             </div>
         </div>
