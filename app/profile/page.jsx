@@ -2,6 +2,7 @@
 import Profilepic from "@/components/Profilepic";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 export default function Home() {
   const [user, setUser] = useState({});
   const change = (e) => {
@@ -36,7 +37,7 @@ export default function Home() {
         if (response.data.error) {
           console.log(response.data.error);
         } else {
-          alert("profile Updated");
+          toast.success("Profile Updated!")
         }
       })
       .catch(function (error) {
