@@ -20,6 +20,7 @@ flush privileges;
 ```
 
 ```bash
+npm i
 npm run dev
 ```
 
